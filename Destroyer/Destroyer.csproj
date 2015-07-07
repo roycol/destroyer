@@ -59,15 +59,15 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\images\cloud.png" />
-    <Content Include="assets\images\island.png" />
-    <Content Include="assets\images\ocean.gif" />
-    <Content Include="assets\images\plane.png" />
+    <Content Include="assets\audio\collision.wav" />
+    <Content Include="assets\audio\flight.wav" />
+    <Content Include="assets\audio\rescueFriend.wav" />
+    <Content Include="assets\images\destroyer.png" />
+    <Content Include="assets\images\destroyerCrash.png" />
+    <Content Include="assets\images\planet.png" />
+    <Content Include="assets\images\friend.png" />
     <Content Include="assets\images\space.png" />
     <Content Include="packages.config" />
-    <Content Include="assets\audio\engine.ogg" />
-    <Content Include="assets\audio\thunder.ogg" />
-    <Content Include="assets\audio\yay.ogg" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -94,11 +94,11 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\game.ts" />
     <TypeScriptCompile Include="Scripts\managers\collision.ts" />
-    <TypeScriptCompile Include="Scripts\objects\cloud.ts" />
+    <TypeScriptCompile Include="Scripts\objects\planet.ts" />
     <TypeScriptCompile Include="Scripts\objects\gameobject.ts" />
-    <TypeScriptCompile Include="Scripts\objects\island.ts" />
+    <TypeScriptCompile Include="Scripts\objects\friend.ts" />
     <TypeScriptCompile Include="Scripts\objects\space.ts" />
-    <TypeScriptCompile Include="Scripts\objects\plane.ts" />
+    <TypeScriptCompile Include="Scripts\objects\destroyer.ts" />
     <TypeScriptCompile Include="Scripts\objects\scoreboard.ts" />
     <TypeScriptCompile Include="Scripts\typings\createjs-lib\createjs-lib.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\easeljs\easeljs.d.ts" />

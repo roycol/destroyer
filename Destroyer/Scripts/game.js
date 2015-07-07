@@ -6,9 +6,9 @@
 /// <reference path="utility/utility.ts" />
 /// <reference path="objects/gameobject.ts" />
 /// <reference path="objects/space.ts" />
-/// <reference path="objects/plane.ts" />
-/// <reference path="objects/island.ts" />
-/// <reference path="objects/cloud.ts" />
+/// <reference path="objects/destroyer.ts" />
+/// <reference path="objects/friend.ts" />
+/// <reference path="objects/planet.ts" />
 /// <reference path="objects/scoreboard.ts" />
 /// <reference path="managers/collision.ts" />
 // Game Framework Variables
@@ -18,18 +18,19 @@ var stats;
 var assets;
 var manifest = [
     { id: "space", src: "assets/images/space.png" },
-    { id: "plane", src: "assets/images/plane.png" },
-    { id: "island", src: "assets/images/island.png" },
-    { id: "cloud", src: "assets/images/cloud.png" },
-    { id: "yay", src: "assets/audio/yay.ogg" },
-    { id: "thunder", src: "assets/audio/thunder.ogg" },
-    { id: "engine", src: "assets/audio/engine.ogg" }
+    { id: "destroyer", src: "assets/images/destroyer.png" },
+    { id: "destroyerCrash", src: "assets/images/destroyerCrash.png" },
+    { id: "friend", src: "assets/images/friend.png" },
+    { id: "planet", src: "assets/images/planet.png" },
+    { id: "collision", src: "assets/audio/collision.wav" },
+    { id: "flight", src: "assets/audio/flight.wav" },
+    { id: "rescueFriend", src: "assets/audio/rescueFriend.wav" }
 ];
 // Game Variables
 var space;
-var plane;
-var island;
-var clouds = [];
+var destroyer;
+var friend;
+var planets = [];
 var scoreboard;
 // Game Managers
 var collision;
@@ -59,7 +60,7 @@ function setupStats() {
     stats.setMode(0); // set to fps
     // align bottom-right
     stats.domElement.style.position = 'absolute';
-    stats.domElement.style.left = '650px';
+    stats.domElement.style.left = '720px';
     stats.domElement.style.top = '10px';
     document.body.appendChild(stats.domElement);
 }
@@ -67,13 +68,13 @@ function setupStats() {
 function gameLoop() {
     stats.begin(); // Begin measuring
     space.update();
-    plane.update();
-    island.update();
-    for (var cloud = 0; cloud < 3; cloud++) {
-        clouds[cloud].update();
-        collision.check(clouds[cloud]);
+    destroyer.update();
+    friend.update();
+    for (var planet = 0; planet < 3; planet++) {
+        planets[planet].update();
+        collision.check(planets[planet]);
     }
-    collision.check(island);
+    collision.check(friend);
     scoreboard.update();
     stage.update();
     stats.end(); // end measuring
@@ -83,16 +84,16 @@ function main() {
     //add space object to stage
     space = new objects.Space(assets.getResult("space"));
     stage.addChild(space);
-    //add island object to stage
-    island = new objects.Island(assets.getResult("island"));
-    stage.addChild(island);
-    // add plane object to stage
-    plane = new objects.Plane(assets.getResult("plane"));
-    stage.addChild(plane);
-    // add 3 cloud objects to stage
-    for (var cloud = 0; cloud < 3; cloud++) {
-        clouds[cloud] = new objects.Cloud(assets.getResult("cloud"));
-        stage.addChild(clouds[cloud]);
+    //add friend object to stage
+    friend = new objects.Friend(assets.getResult("friend"));
+    stage.addChild(friend);
+    // add destroyer object to stage
+    destroyer = new objects.Destroyer(assets.getResult("destroyer"));
+    stage.addChild(destroyer);
+    // add 3 planet objects to stage
+    for (var planet = 0; planet < 3; planet++) {
+        planets[planet] = new objects.Planet(assets.getResult("planet"));
+        stage.addChild(planets[planet]);
     }
     //add scoreboard
     scoreboard = new objects.ScoreBoard();

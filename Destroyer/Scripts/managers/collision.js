@@ -5,21 +5,22 @@ var managers;
         function Collision() {
         }
         //PUBLIC METHODS ++++++++++++++++++++++++
-        // check the distance between plane and any other game object
+        // check the distance between destroyer and any other game object
         Collision.prototype.check = function (gameObject) {
             var p1 = new createjs.Point();
             var p2 = new createjs.Point();
-            p1.x = plane.x;
-            p1.y = plane.y;
+            p1.x = destroyer.x;
+            p1.y = destroyer.y;
             p2.x = gameObject.x;
             p2.y = gameObject.y;
-            if (utility.distance(p1, p2) < ((plane.height * 0.5) + (gameObject.height * 0.5))) {
+            if (utility.distance(p1, p2) < ((destroyer.height * 0.3) + (gameObject.height * 0.3))) {
                 if (gameObject.isColliding == false) {
                     createjs.Sound.play(gameObject.sound);
-                    if (gameObject.name == "cloud") {
+                    if (gameObject.name == "planet") {
+                        //destroyer.image = "destroyerCrash";
                         scoreboard.lives--;
                     }
-                    if (gameObject.name == "island") {
+                    if (gameObject.name == "friend") {
                         scoreboard.score += 100;
                     }
                 }
