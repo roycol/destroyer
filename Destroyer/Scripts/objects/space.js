@@ -12,7 +12,7 @@ var objects;
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++
         function Space(imageString) {
             _super.call(this, imageString);
-            this.dy = 5;
+            this.dx = 5;
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.reset();
@@ -20,17 +20,17 @@ var objects;
         // PRIVATE METHODS ++++++++++++++++++++++++++++++
         Space.prototype.checkBounds = function () {
             // check if ocean has left screen
-            if (this.y == 0) {
+            if (this.x == -1400) {
                 this.reset();
             }
         };
         Space.prototype.reset = function () {
             this.x = 0;
-            this.y = -960; // reset ocean off screen
+            this.y = 0; // reset ocean off screen
         };
         // PUBLIC METHODS +++++++++++++++++++++++++++++++
         Space.prototype.update = function () {
-            this.y += this.dy; // moves Ocean down the stage
+            this.x -= this.dx; // moves Ocean down the stage
             this.checkBounds();
         };
         return Space;

@@ -16,17 +16,17 @@
         private checkBounds(): void {
 
             // check if cloud has left screen
-            if (this.y > 480 + this.height) {
+            if (this.x < -this.width) {
                 this.reset();
             }
         }
 
 
-        private reset(): void {
-            this.x = Math.floor(Math.random() * 640); // start planet at random location
-            this.y = -this.height; // start planet off stage
-            this.dy = Math.floor(Math.random() * 5) + 5;
-            this.dx = Math.floor(Math.random() * 4) - 2;
+        public reset(): void {
+            this.x = 700 + this.height; // start planet off stage
+            this.y = Math.floor(Math.random() * 480); // start planet at random location
+            this.dx = Math.floor(Math.random() * 5) + 5;
+            this.dy = Math.floor(Math.random() * 4) - 2;
         }
 
 
@@ -34,7 +34,7 @@
         public update(): void {
 
             this.y += this.dy; // moves planet down the stage
-            this.x += this.dx; // drifts planet right and left
+            this.x -= this.dx; // drifts planet right and left
             this.checkBounds();
         }
     }

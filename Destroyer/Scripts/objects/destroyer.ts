@@ -7,14 +7,14 @@
 
             this.sound = "flight";
 
-            this.y = 430;
+            this.x = 60;
 
             createjs.Sound.play(this.sound, {"loop": -1});
         }
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++
         public update(): void {
-            this.x = stage.mouseX; // position plane under mouse
-        }
+            this.y = stage.mouseY; // position plane under mouse
+        }        
     }
 } 

@@ -31,6 +31,8 @@ var space;
 var destroyer;
 var friend;
 var planets = [];
+var destroyerNormal;
+var destroyerCrash;
 var scoreboard;
 // Game Managers
 var collision;
@@ -72,9 +74,9 @@ function gameLoop() {
     friend.update();
     for (var planet = 0; planet < 3; planet++) {
         planets[planet].update();
-        collision.check(planets[planet]);
+        collision.planetCheck(planets[planet]);
     }
-    collision.check(friend);
+    collision.friendCheck(friend);
     scoreboard.update();
     stage.update();
     stats.end(); // end measuring
@@ -90,6 +92,9 @@ function main() {
     // add destroyer object to stage
     destroyer = new objects.Destroyer(assets.getResult("destroyer"));
     stage.addChild(destroyer);
+    // in order to use images when destroyer crash planets
+    destroyerNormal = new objects.Destroyer(assets.getResult("destroyer"));
+    destroyerCrash = new objects.Destroyer(assets.getResult("destroyerCrash"));
     // add 3 planet objects to stage
     for (var planet = 0; planet < 3; planet++) {
         planets[planet] = new objects.Planet(assets.getResult("planet"));

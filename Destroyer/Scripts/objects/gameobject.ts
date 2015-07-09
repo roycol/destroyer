@@ -9,8 +9,8 @@
         public name: string = "";
 
         // PROTECTED PROPERTIES +++++++++++++++++++++++++++
-        protected dy: number;
         protected dx: number;
+        protected dy: number;
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++
         constructor(imageString: string) {
