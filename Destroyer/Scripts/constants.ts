@@ -1,4 +1,13 @@
-﻿module constants {
+﻿/*
+    * file name: constants.ts
+    * author's name: Roy Kim
+    * last modified by: Roy Kim
+    * date last modified: July 10, 2015
+    * description: Constants for each part of game
+    * revision history: _v2
+*/
+
+module constants {
     // State Machine Constants
     export var MENU_STATE: number = 0;
     export var PLAY_STATE: number = 1;

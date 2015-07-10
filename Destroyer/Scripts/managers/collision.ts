@@ -1,4 +1,13 @@
-﻿module managers {
+﻿/*
+    * file name: collesion.ts
+    * author's name: Roy Kim
+    * last modified by: Roy Kim
+    * date last modified: July 10, 2015
+    * description: module for collision which ditermine and calculate lives of destroyer and score.
+    * revision history: _v6
+*/
+
+module managers {
     export class Collision {
 
         

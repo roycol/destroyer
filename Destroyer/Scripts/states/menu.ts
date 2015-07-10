@@ -1,4 +1,13 @@
-﻿/// <reference path="../constants.ts" />
+﻿/*
+    * file name: menu.ts
+    * author's name: Roy Kim
+    * last modified by: Roy Kim
+    * date last modified: July 10, 2015
+    * description: module for a state of when game begins (including instruction)
+    * revision history: _v3
+*/
+
+/// <reference path="../constants.ts" />
 /// <reference path="../objects/scoreboard.ts" />
 /// <reference path="../objects/destroyer.ts" />
 /// <reference path="../objects/space.ts" />

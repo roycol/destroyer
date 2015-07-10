@@ -1,3 +1,11 @@
+/*
+    * file name: space.ts
+    * author's name: Roy Kim
+    * last modified by: Roy Kim
+    * date last modified: July 10, 2015
+    * description: module for space(background)
+    * revision history: _v1
+*/
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }

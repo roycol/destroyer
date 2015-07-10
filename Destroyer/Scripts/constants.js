@@ -1,3 +1,11 @@
+/*
+    * file name: constants.ts
+    * author's name: Roy Kim
+    * last modified by: Roy Kim
+    * date last modified: July 10, 2015
+    * description: Constants for each part of game
+    * revision history: _v2
+*/
 var constants;
 (function (constants) {
     // State Machine Constants

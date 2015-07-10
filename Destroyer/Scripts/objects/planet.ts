@@ -1,4 +1,13 @@
-﻿module objects {
+﻿/*
+    * file name: planet.ts
+    * author's name: Roy Kim
+    * last modified by: Roy Kim
+    * date last modified: July 10, 2015
+    * description: module for planets
+    * revision history: _v4
+*/
+
+module objects {
     // Planet Class ++++++++++++++++++++++++++++++++++++++
     export class Planet extends objects.GameObject {
                 

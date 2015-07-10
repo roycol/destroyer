@@ -1,3 +1,11 @@
+/*
+    * file name: game.ts
+    * author's name: Roy Kim
+    * last modified by: Roy Kim
+    * date last modified: July 10, 2015
+    * description: main typescript file for destroyer
+    * revision history: _v5
+*/
 /// <reference path="constants.ts" />
 /// <reference path="typings/stats/stats.d.ts" />
 /// <reference path="typings/easeljs/easeljs.d.ts" />
@@ -94,27 +102,6 @@ function setupStats() {
 function gameLoop() {
     currentStateFunction();
     stage.update();
-}
-// Our Main Game Function
-function main() {
-    ////add space object to stage
-    //space = new objects.Space(assets.getResult("space"));
-    //stage.addChild(space);
-    ////add friend object to stage
-    //friend = new objects.Friend(assets.getResult("friend"));
-    //stage.addChild(friend);
-    //// add destroyer object to stage
-    //destroyer = new objects.Destroyer(assets.getResult("destroyer"));
-    //stage.addChild(destroyer);
-    //// add 3 planet objects to stage
-    //for (var planet = 0; planet < 3; planet++) {
-    //    planets[planet] = new objects.Planet(assets.getResult("planet"));
-    //    stage.addChild(planets[planet]);
-    //}
-    ////add scoreboard
-    //scoreboard = new objects.ScoreBoard();
-    ////add collision manager
-    //collision = new managers.Collision();
 }
 function changeState(state) {
     // Launch Various "screens"

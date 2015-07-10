@@ -1,4 +1,13 @@
-﻿module objects {
+﻿/*
+    * file name: destroyer.ts
+    * author's name: Roy Kim
+    * last modified by: Roy Kim
+    * date last modified: July 10, 2015
+    * description: module for main charector
+    * revision history: _v4
+*/
+
+module objects {
     // Destroyer Class ++++++++++++++++++++++++++++++++++++++
     export class Destroyer extends objects.GameObject {
 
