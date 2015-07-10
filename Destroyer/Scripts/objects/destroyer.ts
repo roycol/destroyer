@@ -6,7 +6,6 @@
             super(imageString);
 
             this.sound = "flight";
-
             this.x = 60;
 
             createjs.Sound.play(this.sound, {"loop": -1});

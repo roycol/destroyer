@@ -4,7 +4,7 @@
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++
         constructor(imageString: string) {
             super(imageString);
-
+            
             this.name = "friend";
             this.sound = "rescueFriend";
             this.dx = 5;

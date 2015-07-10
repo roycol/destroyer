@@ -5,7 +5,7 @@
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++
         constructor(imageString: string) {
             super(imageString);
-
+             
             this.name = "planet";
             this.sound = "collision";
 
