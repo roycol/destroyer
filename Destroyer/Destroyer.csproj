@@ -70,14 +70,14 @@
     <Content Include="assets\images\space.png" />
     <Content Include="assets\images\tryagain.png" />
     <Content Include="packages.config" />
+    <Content Include="Scripts\constants.js" />
     <Content Include="Scripts\lib\preloadjs-0.6.0.min.js" />
     <Content Include="Scripts\lib\soundjs-0.6.0.min.js" />
+    <Content Include="Scripts\objects\button.js" />
     <Content Include="Scripts\objects\destroyer.js.map" />
     <Content Include="Scripts\objects\friend.js.map" />
+    <Content Include="Scripts\objects\label.js" />
     <Content Include="Scripts\objects\planet.js.map" />
-    <Content Include="Scripts\states\gameover.js.map" />
-    <Content Include="Scripts\states\menu.js.map" />
-    <Content Include="Scripts\states\play.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
