@@ -1,15 +1,21 @@
 ﻿module objects {
     // Friend Class ++++++++++++++++++++++++++++++++++++++
     export class Friend extends objects.GameObject {
+
+        stage: createjs.Stage;
+        game: createjs.Container;
+
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++
-        constructor(imageString: string) {
+        constructor(imageString: string, stage: createjs.Stage, game: createjs.Container) {
             super(imageString);
-            
+            this.stage = stage;
+            this.game = game;
             this.name = "friend";
             this.sound = "rescueFriend";
             this.dx = 5;
 
             this.reset();
+            game.addChild(this);
         }
 
         // PRIVATE METHODS ++++++++++++++++++++++++++++++
@@ -32,6 +38,10 @@
         public update(): void {
             this.x -= this.dx; // moves friend down the stage
             this.checkBounds();
+        }
+
+        destroy() {
+            game.removeChild(this);
         }
     }
 } 

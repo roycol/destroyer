@@ -10,15 +10,25 @@ var objects;
     var Destroyer = (function (_super) {
         __extends(Destroyer, _super);
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++
-        function Destroyer(imageString) {
+        function Destroyer(imageString, stage, game, isActor) {
             _super.call(this, imageString);
+            this.stage = stage;
+            this.game = game;
             this.sound = "flight";
             this.x = 60;
-            createjs.Sound.play(this.sound, { "loop": -1 });
+            this.y = 240;
+            if (isActor == true) {
+                this.spaceSound = createjs.Sound.play(this.sound, { "loop": -1 });
+                game.addChild(this);
+            }
         }
         // PUBLIC METHODS +++++++++++++++++++++++++++++++
         Destroyer.prototype.update = function () {
             this.y = stage.mouseY; // position plane under mouse
+        };
+        Destroyer.prototype.destroy = function () {
+            this.spaceSound.stop();
+            this.game.removeChild(this);
         };
         return Destroyer;
     })(objects.GameObject);

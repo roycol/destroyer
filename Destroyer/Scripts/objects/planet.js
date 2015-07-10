@@ -10,11 +10,14 @@ var objects;
     var Planet = (function (_super) {
         __extends(Planet, _super);
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++
-        function Planet(imageString) {
+        function Planet(imageString, stage, game) {
             _super.call(this, imageString);
+            this.stage = stage;
+            this.game = game;
             this.name = "planet";
             this.sound = "collision";
             this.reset();
+            game.addChild(this);
         }
         // PRIVATE METHODS ++++++++++++++++++++++++++++++
         Planet.prototype.checkBounds = function () {
@@ -26,7 +29,7 @@ var objects;
         Planet.prototype.reset = function () {
             this.x = 700 + this.height; // start planet off stage
             this.y = Math.floor(Math.random() * 480); // start planet at random location
-            this.dx = Math.floor(Math.random() * 5) + 5;
+            this.dx = Math.floor(Math.random() * 5) + 3;
             this.dy = Math.floor(Math.random() * 4) - 2;
         };
         // PUBLIC METHODS +++++++++++++++++++++++++++++++
@@ -34,6 +37,9 @@ var objects;
             this.y += this.dy; // moves planet down the stage
             this.x -= this.dx; // drifts planet right and left
             this.checkBounds();
+        };
+        Planet.prototype.destroy = function () {
+            game.removeChild(this);
         };
         return Planet;
     })(objects.GameObject);

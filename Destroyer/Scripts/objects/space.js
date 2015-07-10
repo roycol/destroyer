@@ -10,12 +10,15 @@ var objects;
     var Space = (function (_super) {
         __extends(Space, _super);
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++
-        function Space(imageString) {
+        function Space(imageString, stage, game) {
             _super.call(this, imageString);
             this.dx = 5;
+            this.stage = stage;
+            this.game = game;
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.reset();
+            game.addChild(this);
         }
         // PRIVATE METHODS ++++++++++++++++++++++++++++++
         Space.prototype.checkBounds = function () {

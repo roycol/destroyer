@@ -1,7 +1,8 @@
+/// <reference path="constants.ts" />
 /// <reference path="typings/stats/stats.d.ts" />
 /// <reference path="typings/easeljs/easeljs.d.ts" />
 /// <reference path="typings/tweenjs/tweenjs.d.ts" />
-/// <reference path="typings/soundjs/soundjs.d.ts" />
+/// <reference path="lib/soundjs.d.ts" />
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
 /// <reference path="utility/utility.ts" />
 /// <reference path="objects/gameobject.ts" />
@@ -10,10 +11,16 @@
 /// <reference path="objects/friend.ts" />
 /// <reference path="objects/planet.ts" />
 /// <reference path="objects/scoreboard.ts" />
+/// <reference path="objects/label.ts" />
+/// <reference path="objects/button.ts" />
 /// <reference path="managers/collision.ts" />
+/// <reference path="states/play.ts" />
+/// <reference path="states/menu.ts" />
+/// <reference path="states/gameover.ts" />
 // Game Framework Variables
 var canvas = document.getElementById("canvas");
 var stage;
+var game;
 var stats;
 var assets;
 var manifest = [
@@ -24,7 +31,9 @@ var manifest = [
     { id: "planet", src: "assets/images/planet.png" },
     { id: "collision", src: "assets/audio/collision.wav" },
     { id: "flight", src: "assets/audio/flight.wav" },
-    { id: "rescueFriend", src: "assets/audio/rescueFriend.wav" }
+    { id: "rescueFriend", src: "assets/audio/rescueFriend.wav" },
+    { id: "playNow", src: "assets/images/playnow.png" },
+    { id: "tryAgain", src: "assets/images/tryagain.png" }
 ];
 // Game Variables
 var space;
@@ -33,9 +42,14 @@ var friend;
 var planets = [];
 var destroyerNormal;
 var destroyerCrash;
+var currentState;
+var currentStateFunction;
 var scoreboard;
 // Game Managers
 var collision;
+// Buttons
+var tryAgain;
+var playButton;
 // Preloader Function
 function preload() {
     assets = new createjs.LoadQueue();
@@ -49,12 +63,22 @@ function preload() {
 // Callback function that initializes game objects
 function init() {
     stage = new createjs.Stage(canvas); // reference to the stage
-    stage.enableMouseOver(20);
+    stage.enableMouseOver(30);
     createjs.Ticker.setFPS(60); // framerate 60 fps for the game
     // event listener triggers 60 times every second
     createjs.Ticker.on("tick", gameLoop);
-    // calling main game function
-    main();
+    optimizeForMobile();
+    currentState = constants.MENU_STATE;
+    changeState(currentState);
+    // in order to use images when destroyer crash planets
+    destroyerNormal = new objects.Destroyer(assets.getResult("destroyer"), stage, game, false);
+    destroyerCrash = new objects.Destroyer(assets.getResult("destroyerCrash"), stage, game, false);
+}
+// Add touch support for mobile devices
+function optimizeForMobile() {
+    if (createjs.Touch.isSupported()) {
+        createjs.Touch.enable(stage);
+    }
 }
 // function to setup stat counting
 function setupStats() {
@@ -68,41 +92,48 @@ function setupStats() {
 }
 // Callback function that creates our Main Game Loop - refreshed 60 fps
 function gameLoop() {
-    stats.begin(); // Begin measuring
-    space.update();
-    destroyer.update();
-    friend.update();
-    for (var planet = 0; planet < 3; planet++) {
-        planets[planet].update();
-        collision.planetCheck(planets[planet]);
-    }
-    collision.friendCheck(friend);
-    scoreboard.update();
+    currentStateFunction();
     stage.update();
-    stats.end(); // end measuring
 }
 // Our Main Game Function
 function main() {
-    //add space object to stage
-    space = new objects.Space(assets.getResult("space"));
-    stage.addChild(space);
-    //add friend object to stage
-    friend = new objects.Friend(assets.getResult("friend"));
-    stage.addChild(friend);
-    // add destroyer object to stage
-    destroyer = new objects.Destroyer(assets.getResult("destroyer"));
-    stage.addChild(destroyer);
-    // in order to use images when destroyer crash planets
-    destroyerNormal = new objects.Destroyer(assets.getResult("destroyer"));
-    destroyerCrash = new objects.Destroyer(assets.getResult("destroyerCrash"));
-    // add 3 planet objects to stage
-    for (var planet = 0; planet < 3; planet++) {
-        planets[planet] = new objects.Planet(assets.getResult("planet"));
-        stage.addChild(planets[planet]);
+    ////add space object to stage
+    //space = new objects.Space(assets.getResult("space"));
+    //stage.addChild(space);
+    ////add friend object to stage
+    //friend = new objects.Friend(assets.getResult("friend"));
+    //stage.addChild(friend);
+    //// add destroyer object to stage
+    //destroyer = new objects.Destroyer(assets.getResult("destroyer"));
+    //stage.addChild(destroyer);
+    //// add 3 planet objects to stage
+    //for (var planet = 0; planet < 3; planet++) {
+    //    planets[planet] = new objects.Planet(assets.getResult("planet"));
+    //    stage.addChild(planets[planet]);
+    //}
+    ////add scoreboard
+    //scoreboard = new objects.ScoreBoard();
+    ////add collision manager
+    //collision = new managers.Collision();
+}
+function changeState(state) {
+    // Launch Various "screens"
+    switch (state) {
+        case constants.MENU_STATE:
+            // instantiate menu screen
+            currentStateFunction = states.menuState;
+            states.menu();
+            break;
+        case constants.PLAY_STATE:
+            // instantiate play screen
+            currentStateFunction = states.playState;
+            states.play();
+            break;
+        case constants.GAME_OVER_STATE:
+            currentStateFunction = states.gameOverState;
+            // instantiate game over screen
+            states.gameOver();
+            break;
     }
-    //add scoreboard
-    scoreboard = new objects.ScoreBoard();
-    //add collision manager
-    collision = new managers.Collision();
 }
 //# sourceMappingURL=game.js.map

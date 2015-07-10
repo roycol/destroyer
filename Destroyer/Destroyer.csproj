@@ -66,11 +66,18 @@
     <Content Include="assets\images\destroyerCrash.png" />
     <Content Include="assets\images\planet.png" />
     <Content Include="assets\images\friend.png" />
+    <Content Include="assets\images\playnow.png" />
     <Content Include="assets\images\space.png" />
+    <Content Include="assets\images\tryagain.png" />
     <Content Include="packages.config" />
+    <Content Include="Scripts\lib\preloadjs-0.6.0.min.js" />
+    <Content Include="Scripts\lib\soundjs-0.6.0.min.js" />
     <Content Include="Scripts\objects\destroyer.js.map" />
     <Content Include="Scripts\objects\friend.js.map" />
     <Content Include="Scripts\objects\planet.js.map" />
+    <Content Include="Scripts\states\gameover.js.map" />
+    <Content Include="Scripts\states\menu.js.map" />
+    <Content Include="Scripts\states\play.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -82,13 +89,14 @@
     <Content Include="css\main.css" />
     <Content Include="index.html" />
     <Content Include="Scripts\lib\easeljs-0.8.0.min.js" />
-    <Content Include="Scripts\lib\preloadjs-0.6.0.min.js" />
-    <Content Include="Scripts\lib\soundjs-0.6.0.min.js" />
     <Content Include="Scripts\lib\tweenjs-0.6.0.min.js" />
     <Content Include="Scripts\lib\Stats.js" />
     <Content Include="Scripts\objects\destroyer.js" />
     <Content Include="Scripts\objects\friend.js" />
     <Content Include="Scripts\objects\planet.js" />
+    <Content Include="Scripts\states\gameover.js" />
+    <Content Include="Scripts\states\menu.js" />
+    <Content Include="Scripts\states\play.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -96,20 +104,28 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\fonts\" />
+    <Folder Include="Scripts\typings\createjs-lib\" />
+    <Folder Include="Scripts\typings\soundjs\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\constants.ts" />
     <TypeScriptCompile Include="Scripts\game.ts" />
+    <TypeScriptCompile Include="Scripts\lib\createjs-lib.d.ts" />
+    <TypeScriptCompile Include="Scripts\lib\soundjs.d.ts" />
     <TypeScriptCompile Include="Scripts\managers\collision.ts" />
+    <TypeScriptCompile Include="Scripts\objects\button.ts" />
+    <TypeScriptCompile Include="Scripts\objects\label.ts" />
     <TypeScriptCompile Include="Scripts\objects\planet.ts" />
     <TypeScriptCompile Include="Scripts\objects\gameobject.ts" />
     <TypeScriptCompile Include="Scripts\objects\friend.ts" />
     <TypeScriptCompile Include="Scripts\objects\space.ts" />
     <TypeScriptCompile Include="Scripts\objects\destroyer.ts" />
     <TypeScriptCompile Include="Scripts\objects\scoreboard.ts" />
-    <TypeScriptCompile Include="Scripts\typings\createjs-lib\createjs-lib.d.ts" />
+    <TypeScriptCompile Include="Scripts\states\gameover.ts" />
+    <TypeScriptCompile Include="Scripts\states\menu.ts" />
+    <TypeScriptCompile Include="Scripts\states\play.ts" />
     <TypeScriptCompile Include="Scripts\typings\easeljs\easeljs.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\preloadjs\preloadjs.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\soundjs\soundjs.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\stats\stats.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\tweenjs\tweenjs.d.ts" />
     <TypeScriptCompile Include="Scripts\utility\utility.ts" />

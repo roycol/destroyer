@@ -10,12 +10,15 @@ var objects;
     var Friend = (function (_super) {
         __extends(Friend, _super);
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++
-        function Friend(imageString) {
+        function Friend(imageString, stage, game) {
             _super.call(this, imageString);
+            this.stage = stage;
+            this.game = game;
             this.name = "friend";
             this.sound = "rescueFriend";
             this.dx = 5;
             this.reset();
+            game.addChild(this);
         }
         // PRIVATE METHODS ++++++++++++++++++++++++++++++
         Friend.prototype.checkBounds = function () {
@@ -32,6 +35,9 @@ var objects;
         Friend.prototype.update = function () {
             this.x -= this.dx; // moves friend down the stage
             this.checkBounds();
+        };
+        Friend.prototype.destroy = function () {
+            game.removeChild(this);
         };
         return Friend;
     })(objects.GameObject);

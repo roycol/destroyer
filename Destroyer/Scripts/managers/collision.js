@@ -5,31 +5,6 @@ var managers;
         function Collision() {
         }
         //PUBLIC METHODS ++++++++++++++++++++++++
-        // check the distance between destroyer and any other game object
-        Collision.prototype.check = function (gameObject) {
-            var p1 = new createjs.Point();
-            var p2 = new createjs.Point();
-            p1.x = destroyer.x;
-            p1.y = destroyer.y;
-            p2.x = gameObject.x;
-            p2.y = gameObject.y;
-            if (utility.distance(p1, p2) < ((destroyer.height * 0.3) + (gameObject.height * 0.3))) {
-                if (gameObject.isColliding == false) {
-                    createjs.Sound.play(gameObject.sound);
-                    if (gameObject.name == "planet") {
-                        scoreboard.lives--;
-                    }
-                    if (gameObject.name == "friend") {
-                        scoreboard.score += 100;
-                    }
-                }
-                gameObject.isColliding = true;
-            }
-            else {
-                gameObject.isColliding = false;
-            }
-        };
-        //PUBLIC METHODS ++++++++++++++++++++++++
         // change Destroyer image to DestroyerCrash 
         Collision.prototype.changeDestroyerImg = function (sec) {
             destroyer.image = destroyerCrash.image;
@@ -79,6 +54,14 @@ var managers;
             else {
                 friend.isColliding = false;
             }
+        };
+        // Utility Function to Check Collisions
+        Collision.prototype.update = function () {
+            for (var planet = 0; planet < constants.PLANET_NUM; planet++) {
+                planets[planet].update();
+                this.planetCheck(planets[planet]);
+            }
+            this.friendCheck(friend);
         };
         return Collision;
     })();

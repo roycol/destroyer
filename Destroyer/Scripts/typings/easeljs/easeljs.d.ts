@@ -1,3 +1,5 @@
+/// <reference path="../../lib/createjs-lib.d.ts" />
+/// <reference path="../../lib/createjs-lib.d.ts" />
 // Type definitions for EaselJS 0.8.0
 // Project: http://www.createjs.com/#!/EaselJS
 // Definitions by: Pedro Ferreira <https://bitbucket.org/drk4>, Chris Smith <https://github.com/evilangelist>
@@ -12,7 +14,7 @@
 
 // Library documentation : http://www.createjs.com/Docs/EaselJS/modules/EaselJS.html
 
-/// <reference path="../createjs-lib/createjs-lib.d.ts" />
+/// <reference path="../../lib/createjs-lib.d.ts" />
 /// <reference path="../tweenjs/tweenjs.d.ts" />
 
 // rename the native MouseEvent, to avoid conflict with createjs's MouseEvent

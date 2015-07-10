@@ -1,24 +1,28 @@
 var objects;
 (function (objects) {
-    var ScoreBoard = (function () {
-        // CONSTRUCTOR +++++++++++++++++++
-        function ScoreBoard() {
-            // PUBLIC PROPERTIES
+    // Scoreboard Class
+    var Scoreboard = (function () {
+        function Scoreboard(stage, game) {
+            this.labelText = "";
+            this.stage = stage;
+            this.game = game;
+            this.lives = constants.DESTROYER_LIVES;
             this.score = 0;
-            this.lives = 5;
-            this.livesLabel = new createjs.Text("Lives:", "40px Consolas", "#FFFF00");
-            this.scoreLabel = new createjs.Text("Score:", "40px Consolas", "#FFFF00");
-            this.scoreLabel.x = 350;
-            stage.addChild(this.livesLabel);
-            stage.addChild(this.scoreLabel);
+            this.label = new createjs.Text(this.labelText, constants.LABEL_TITLE_FONT, constants.LABEL_COLOUR);
+            this.update();
+            this.width = this.label.getBounds().width;
+            this.height = this.label.getBounds().height;
+            game.addChild(this.label);
         }
-        // PUBLIC METHODS +++++++++++++++++
-        ScoreBoard.prototype.update = function () {
-            this.livesLabel.text = "Lives: " + this.lives;
-            this.scoreLabel.text = "Score: " + this.score;
+        Scoreboard.prototype.update = function () {
+            this.labelText = "Lives: " + this.lives.toString() + " Score: " + this.score.toString();
+            this.label.text = this.labelText;
         };
-        return ScoreBoard;
+        Scoreboard.prototype.destroy = function () {
+            game.removeChild(this.label);
+        };
+        return Scoreboard;
     })();
-    objects.ScoreBoard = ScoreBoard;
+    objects.Scoreboard = Scoreboard;
 })(objects || (objects = {}));
 //# sourceMappingURL=scoreboard.js.map

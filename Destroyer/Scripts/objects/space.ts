@@ -2,17 +2,24 @@
     // Ocean Class ++++++++++++++++++++++++++++++++++++++
     export class Space extends createjs.Bitmap {
         // PUBLIC PROPERTIES ++++++++++++++++++++++++++++
+        stage: createjs.Stage;
+        game: createjs.Container;
         width: number;
         height: number;
         dx: number = 5;
+        
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++
-        constructor(imageString: string) {
+        constructor(imageString: string, stage: createjs.Stage, game: createjs.Container) {
             super(imageString);
+            this.stage = stage;
+            this.game = game;
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
 
             this.reset();
+
+            game.addChild(this);
         }
 
         // PRIVATE METHODS ++++++++++++++++++++++++++++++
