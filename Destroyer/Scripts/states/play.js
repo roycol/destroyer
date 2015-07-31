@@ -19,7 +19,7 @@ var states;
     function playState() {
         space.update();
         friend.update();
-        destroyer.update();
+        destroyer.update(controls);
         for (var count = 0; count < constants.PLANET_NUM; count++) {
             planets[count].update();
         }
@@ -55,6 +55,7 @@ var states;
         // Instantiate Collision Manager
         collision = collision = new managers.Collision();
         stage.addChild(game);
+        this.assignControls();
     }
     states.play = play;
 })(states || (states = {}));

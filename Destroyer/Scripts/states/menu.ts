@@ -27,7 +27,7 @@ module states {
 
     export function menuState() {
         space.update();
-        destroyer.update();
+        destroyer.update(controls);
     }
 
     export function menu() {
@@ -58,5 +58,81 @@ module states {
         playButton.addEventListener("click", playButtonClicked);
 
         stage.addChild(game);
+
+        this.assignControls();
+    }
+    
+    export function assignControls(): void {
+        // Binds key actions
+        window.onkeydown = this.onControlDown;
+        window.onkeyup = this.onControlUp;
+    }
+
+    export function onControlDown(e): void {
+        // Basic switch statement to set
+        // our controls to true onKeyDown
+        switch (e.which) {
+            case keys.LEFT:
+            case keys.A:
+                controls.left = true;
+                controls.lTally++;
+                controls.rTally = 0;
+                break;
+            case keys.RIGHT:
+            case keys.D:
+                controls.right = true;
+                controls.rTally++;
+                controls.lTally = 0;
+                break;
+
+            case keys.UP:
+            case keys.W:
+                controls.up = true;
+                controls.rTally++;
+                controls.lTally = 0;
+                break;
+
+            case keys.DOWN:
+            case keys.S:
+                controls.down = true;
+                controls.rTally++;
+                controls.lTally = 0;
+                break;
+            case keys.SPACEBAR:
+
+                controls.spacebar = true;
+                controls.rTally++;
+                controls.lTally = 0;
+
+                break;
+
+        }
+    }
+
+    export function onControlUp(e): void {
+        // Basic switch statement to set
+        // our controls to true onKeyUp
+        switch (e.which) {
+            case keys.LEFT:
+            case keys.A:
+                controls.left = false;
+                break;
+            case keys.RIGHT:
+            case keys.D:
+                controls.right = false;
+                break;
+            case keys.W:
+            case keys.UP:
+                controls.up = false;
+                break;
+            case keys.S:
+            case keys.DOWN:
+                controls.down = false;
+                break;
+            case keys.SPACEBAR:
+                controls.spacebar = false;
+                this.flagRepeat = 0;
+                break;
+        }
     }
 } 

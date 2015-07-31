@@ -29,14 +29,43 @@ var objects;
                 this.spaceSound = createjs.Sound.play(this.sound, { "loop": -1 });
                 game.addChild(this);
             }
+            this.reset();
         }
         // PUBLIC METHODS +++++++++++++++++++++++++++++++
-        Destroyer.prototype.update = function () {
-            this.y = stage.mouseY; // position plane under mouse
+        Destroyer.prototype.update = function (control) {
+            //this.y = stage.mouseY; // position plane under mouse
+            if (flagNewDestroyer)
+                this.updateNewDestroyer();
+            if (control.down == true && this.y < 450) {
+                this.y += 7;
+            }
+            else if (control.up == true && this.y > 30) {
+                this.y -= 7;
+            }
+            else if (control.left == true && this.x > 30) {
+                this.x -= 7;
+            }
+            else if (control.right == true && this.x < 670) {
+                this.x += 7;
+            }
         };
         Destroyer.prototype.destroy = function () {
             this.spaceSound.stop();
             this.game.removeChild(this);
+        };
+        Destroyer.prototype.reset = function () {
+            // reset plane after colliding with enemy
+            this.visible = true;
+            this.x = -100;
+            this.y = Math.floor(Math.random() * 480);
+            flagNewDestroyer = true;
+            this.updateNewDestroyer();
+        };
+        Destroyer.prototype.updateNewDestroyer = function () {
+            this.x += 5;
+            if (this.x > 60) {
+                flagNewDestroyer = false;
+            }
         };
         return Destroyer;
     })(objects.GameObject);

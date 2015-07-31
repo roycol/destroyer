@@ -25,6 +25,8 @@
 /// <reference path="states/play.ts" />
 /// <reference path="states/menu.ts" />
 /// <reference path="states/gameover.ts" />
+/// <reference path="controls.ts" />
+/// <reference path="keys.ts" />
 // Game Framework Variables
 var canvas = document.getElementById("canvas");
 var stage;
@@ -58,6 +60,8 @@ var collision;
 // Buttons
 var tryAgain;
 var playButton;
+// Game variables
+var flagNewDestroyer = true;
 // Preloader Function
 function preload() {
     assets = new createjs.LoadQueue();
