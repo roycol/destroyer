@@ -2,12 +2,12 @@ var objects;
 (function (objects) {
     // Scoreboard Class
     var Scoreboard = (function () {
-        function Scoreboard(stage, game) {
+        function Scoreboard(stage, game, lives, score) {
             this.labelText = "";
             this.stage = stage;
             this.game = game;
-            this.lives = constants.DESTROYER_LIVES;
-            this.score = 0;
+            this.lives = lives;
+            this.score = score;
             this.label = new createjs.Text(this.labelText, constants.LABEL_TITLE_FONT, constants.LABEL_COLOUR);
             this.update();
             this.width = this.label.getBounds().width;

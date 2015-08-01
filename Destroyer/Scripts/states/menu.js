@@ -21,7 +21,7 @@ var states;
         destroyer.destroy();
         game.removeAllChildren();
         game.removeAllEventListeners();
-        currentState = constants.PLAY_STATE;
+        currentState = constants.PLAY_STATE_LEVEL_1;
         changeState(currentState);
     }
     states.playButtonClicked = playButtonClicked;

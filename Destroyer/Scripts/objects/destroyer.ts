@@ -20,6 +20,7 @@ module objects {
             super(imageString);
             this.stage = stage;
             this.game = game;
+            this.name = "destroyer";
             this.sound = "flight";
             this.x = 60;
             this.y = 240;

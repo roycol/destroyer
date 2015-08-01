@@ -84,6 +84,35 @@ module managers {
             }
         }
 
+        //PUBLIC METHODS ++++++++++++++++++++++++
+        // check the distance between destroyer and missile object
+        public missileCheck(missile: objects.MonsterMissile) {
+
+            var p1: createjs.Point = new createjs.Point();
+            var p2: createjs.Point = new createjs.Point();
+
+            p1.x = destroyer.x;
+            p1.y = destroyer.y;
+
+            p2.x = missile.x;
+            p2.y = missile.y;
+
+
+            if (utility.distance(p1, p2) < ((destroyer.height * 0.3) + (friend.height * 0.3))) {
+                if (missile.isColliding == false) {
+                    createjs.Sound.play(missile.sound);
+                    scoreboard.lives--;
+                    this.changeDestroyerImg(1000);
+                    missile.reset();
+                }
+                missile.isColliding = true;
+
+            }
+            else {
+                missile.isColliding = false;
+            }
+        }
+
         // Utility Function to Check Collisions
         update() {
 
@@ -91,6 +120,7 @@ module managers {
                 planets[planet].update();
                 this.planetCheck(planets[planet]);
             }
+             
 
             this.friendCheck(friend);
         }

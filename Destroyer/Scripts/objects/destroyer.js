@@ -22,6 +22,7 @@ var objects;
             _super.call(this, imageString);
             this.stage = stage;
             this.game = game;
+            this.name = "destroyer";
             this.sound = "flight";
             this.x = 60;
             this.y = 240;

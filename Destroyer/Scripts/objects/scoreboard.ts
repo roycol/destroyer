@@ -9,11 +9,11 @@
         labelText: string = "";
         width: number;
         height: number;
-        constructor(stage: createjs.Stage, game: createjs.Container) {
+        constructor(stage: createjs.Stage, game: createjs.Container, lives: number, score: number) {
             this.stage = stage;
             this.game = game;
-            this.lives = constants.DESTROYER_LIVES;
-            this.score = 0;
+            this.lives = lives;
+            this.score = score;
             this.label = new createjs.Text(this.labelText, constants.LABEL_TITLE_FONT, constants.LABEL_COLOUR);
             this.update();
             this.width = this.label.getBounds().width;

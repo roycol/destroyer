@@ -22,7 +22,10 @@
 /// <reference path="objects/label.ts" />
 /// <reference path="objects/button.ts" />
 /// <reference path="managers/collision.ts" />
+/// <reference path="objects/monster.ts" />
+/// <reference path="objects/monstermissile.ts" />
 /// <reference path="states/play.ts" />
+/// <reference path="states/playlvl2.ts" />
 /// <reference path="states/menu.ts" />
 /// <reference path="states/gameover.ts" />
 /// <reference path="controls.ts" />
@@ -39,17 +42,25 @@ var manifest = [
     { id: "destroyerCrash", src: "assets/images/destroyerCrash.png" },
     { id: "friend", src: "assets/images/friend.png" },
     { id: "planet", src: "assets/images/planet.png" },
+    { id: "playNow", src: "assets/images/playnow.png" },
+    { id: "tryAgain", src: "assets/images/tryagain.png" },
+    { id: "monster", src: "assets/images/monster.png" },
+    { id: "missile", src: "assets/images/missile.png" },
+    { id: "monsterMissile", src: "assets/images/monsterMissile.png" },
     { id: "collision", src: "assets/audio/collision.wav" },
     { id: "flight", src: "assets/audio/flight.wav" },
     { id: "rescueFriend", src: "assets/audio/rescueFriend.wav" },
-    { id: "playNow", src: "assets/images/playnow.png" },
-    { id: "tryAgain", src: "assets/images/tryagain.png" }
+    { id: "appearMonster", src: "assets/audio/monster.wav" },
+    { id: "ahh", src: "assets/audio/ahh.wav" }
 ];
 // Game Variables
 var space;
 var destroyer;
 var friend;
 var planets = [];
+var monsters = [];
+//var monsterMissiles: objects.MonsterMissile[] = [];
+var missileArr = new Array(constants.MONSTER_NUM);
 var destroyerNormal;
 var destroyerCrash;
 var currentState;
@@ -85,6 +96,9 @@ function init() {
     // in order to use images when destroyer crash planets
     destroyerNormal = new objects.Destroyer(assets.getResult("destroyer"), stage, game, false);
     destroyerCrash = new objects.Destroyer(assets.getResult("destroyerCrash"), stage, game, false);
+    for (var count = 0; count < constants.MONSTER_NUM; count++) {
+        missileArr[count] = new Array(constants.MONSTER_MISSILE_NUM);
+    }
 }
 // Add touch support for mobile devices
 function optimizeForMobile() {
@@ -115,10 +129,20 @@ function changeState(state) {
             currentStateFunction = states.menuState;
             states.menu();
             break;
-        case constants.PLAY_STATE:
+        case constants.PLAY_STATE_LEVEL_1:
             // instantiate play screen
             currentStateFunction = states.playState;
             states.play();
+            break;
+        case constants.PLAY_STATE_LEVEL_2:
+            // instantiate play screen
+            currentStateFunction = states.playStateLvl2;
+            states.playLvl2();
+            break;
+        case constants.PLAY_STATE_LEVEL_3:
+            // instantiate play screen
+            currentStateFunction = states.playStateLvl2;
+            states.playLvl2();
             break;
         case constants.GAME_OVER_STATE:
             currentStateFunction = states.gameOverState;

@@ -59,25 +59,24 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\audio\ahh.wav" />
     <Content Include="assets\audio\collision.wav" />
     <Content Include="assets\audio\flight.wav" />
+    <Content Include="assets\audio\monster.wav" />
     <Content Include="assets\audio\rescueFriend.wav" />
     <Content Include="assets\images\destroyer.png" />
     <Content Include="assets\images\destroyerCrash.png" />
+    <Content Include="assets\images\missile.png" />
+    <Content Include="assets\images\monster.png" />
+    <Content Include="assets\images\monsterMissile.png" />
     <Content Include="assets\images\planet.png" />
     <Content Include="assets\images\friend.png" />
     <Content Include="assets\images\playnow.png" />
     <Content Include="assets\images\space.png" />
     <Content Include="assets\images\tryagain.png" />
     <Content Include="packages.config" />
-    <Content Include="Scripts\constants.js" />
     <Content Include="Scripts\lib\preloadjs-0.6.0.min.js" />
     <Content Include="Scripts\lib\soundjs-0.6.0.min.js" />
-    <Content Include="Scripts\objects\button.js" />
-    <Content Include="Scripts\objects\destroyer.js.map" />
-    <Content Include="Scripts\objects\friend.js.map" />
-    <Content Include="Scripts\objects\label.js" />
-    <Content Include="Scripts\objects\planet.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -91,9 +90,6 @@
     <Content Include="Scripts\lib\easeljs-0.8.0.min.js" />
     <Content Include="Scripts\lib\tweenjs-0.6.0.min.js" />
     <Content Include="Scripts\lib\Stats.js" />
-    <Content Include="Scripts\objects\destroyer.js" />
-    <Content Include="Scripts\objects\friend.js" />
-    <Content Include="Scripts\objects\planet.js" />
     <Content Include="Scripts\states\gameover.js" />
     <Content Include="Scripts\states\menu.js" />
     <Content Include="Scripts\states\play.js" />
@@ -117,6 +113,8 @@
     <TypeScriptCompile Include="Scripts\controls.ts" />
     <TypeScriptCompile Include="Scripts\keys.ts" />
     <TypeScriptCompile Include="Scripts\objects\label.ts" />
+    <TypeScriptCompile Include="Scripts\objects\monsterMissile.ts" />
+    <TypeScriptCompile Include="Scripts\objects\monster.ts" />
     <TypeScriptCompile Include="Scripts\objects\planet.ts" />
     <TypeScriptCompile Include="Scripts\objects\gameobject.ts" />
     <TypeScriptCompile Include="Scripts\objects\friend.ts" />
@@ -125,6 +123,7 @@
     <TypeScriptCompile Include="Scripts\objects\scoreboard.ts" />
     <TypeScriptCompile Include="Scripts\states\gameover.ts" />
     <TypeScriptCompile Include="Scripts\states\menu.ts" />
+    <TypeScriptCompile Include="Scripts\states\playLvl2.ts" />
     <TypeScriptCompile Include="Scripts\states\play.ts" />
     <TypeScriptCompile Include="Scripts\typings\easeljs\easeljs.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\preloadjs\preloadjs.d.ts" />

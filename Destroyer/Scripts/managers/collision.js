@@ -63,6 +63,28 @@ var managers;
                 friend.isColliding = false;
             }
         };
+        //PUBLIC METHODS ++++++++++++++++++++++++
+        // check the distance between destroyer and missile object
+        Collision.prototype.missileCheck = function (missile) {
+            var p1 = new createjs.Point();
+            var p2 = new createjs.Point();
+            p1.x = destroyer.x;
+            p1.y = destroyer.y;
+            p2.x = missile.x;
+            p2.y = missile.y;
+            if (utility.distance(p1, p2) < ((destroyer.height * 0.3) + (friend.height * 0.3))) {
+                if (missile.isColliding == false) {
+                    createjs.Sound.play(missile.sound);
+                    scoreboard.lives--;
+                    this.changeDestroyerImg(1000);
+                    missile.reset();
+                }
+                missile.isColliding = true;
+            }
+            else {
+                missile.isColliding = false;
+            }
+        };
         // Utility Function to Check Collisions
         Collision.prototype.update = function () {
             for (var planet = 0; planet < constants.PLANET_NUM; planet++) {

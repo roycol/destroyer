@@ -37,6 +37,15 @@ module states {
             currentState = constants.GAME_OVER_STATE;
             changeState(currentState);
         }
+
+        if (scoreboard.score >= 300) {
+            stage.removeChild(game);
+            destroyer.destroy();
+            game.removeAllChildren();
+            game.removeAllEventListeners();
+            currentState = constants.PLAY_STATE_LEVEL_2;
+            changeState(currentState);
+        }
     }
 
     // play state Function
@@ -58,7 +67,7 @@ module states {
         }
 
         // Display Scoreboard
-        scoreboard = new objects.Scoreboard(stage, game);
+        scoreboard = new objects.Scoreboard(stage, game, constants.DESTROYER_LIVES, 0);
 
         // Instantiate Collision Manager
         collision = collision = new managers.Collision();

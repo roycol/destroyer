@@ -25,7 +25,7 @@ module states {
         stage.removeChild(game);
         game.removeAllChildren();
         game.removeAllEventListeners();
-        currentState = constants.PLAY_STATE;
+        currentState = constants.PLAY_STATE_LEVEL_1;
         changeState(currentState);
     }
 
