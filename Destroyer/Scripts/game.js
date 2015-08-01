@@ -24,6 +24,8 @@
 /// <reference path="managers/collision.ts" />
 /// <reference path="objects/monster.ts" />
 /// <reference path="objects/monstermissile.ts" />
+/// <reference path="objects/destroyerweapon.ts" />
+/// <reference path="objects/explosion.ts" />
 /// <reference path="states/play.ts" />
 /// <reference path="states/playlvl2.ts" />
 /// <reference path="states/menu.ts" />
@@ -40,6 +42,7 @@ var manifest = [
     { id: "space", src: "assets/images/space.png" },
     { id: "destroyer", src: "assets/images/destroyer.png" },
     { id: "destroyerCrash", src: "assets/images/destroyerCrash.png" },
+    { id: "destroyerWeapon", src: "assets/images/shuriken.png" },
     { id: "friend", src: "assets/images/friend.png" },
     { id: "planet", src: "assets/images/planet.png" },
     { id: "playNow", src: "assets/images/playnow.png" },
@@ -47,10 +50,11 @@ var manifest = [
     { id: "monster", src: "assets/images/monster.png" },
     { id: "missile", src: "assets/images/missile.png" },
     { id: "monsterMissile", src: "assets/images/monsterMissile.png" },
+    { id: "explosion", src: "assets/images/explosion.png" },
     { id: "collision", src: "assets/audio/collision.wav" },
     { id: "flight", src: "assets/audio/flight.wav" },
     { id: "rescueFriend", src: "assets/audio/rescueFriend.wav" },
-    { id: "appearMonster", src: "assets/audio/monster.wav" },
+    { id: "growl", src: "assets/audio/monster.wav" },
     { id: "ahh", src: "assets/audio/ahh.wav" }
 ];
 // Game Variables
@@ -59,6 +63,8 @@ var destroyer;
 var friend;
 var planets = [];
 var monsters = [];
+var destroyerWeapons = [];
+var destroyerWeaponNum = 0;
 //var monsterMissiles: objects.MonsterMissile[] = [];
 var missileArr = new Array(constants.MONSTER_NUM);
 var destroyerNormal;
@@ -71,8 +77,9 @@ var collision;
 // Buttons
 var tryAgain;
 var playButton;
-// Game variables
+// Game flags
 var flagNewDestroyer = true;
+var flagSpacebarRepeat = false;
 // Preloader Function
 function preload() {
     assets = new createjs.LoadQueue();

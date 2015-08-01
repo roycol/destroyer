@@ -119,7 +119,6 @@ var states;
                 break;
             case keys.SPACEBAR:
                 controls.spacebar = false;
-                this.flagRepeat = 0;
                 break;
         }
     }

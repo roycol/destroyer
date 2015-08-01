@@ -24,7 +24,7 @@ module objects {
             this.stage = stage;
             this.game = game; 
             this.name = "monster";
-            this.sound = "appearMonster";
+            this.sound = "growl";
             this.hFlag = true;
             this.vFlag = true;
 
@@ -64,8 +64,10 @@ module objects {
             this.x = 700 + this.height; // start monster off stage
             this.y = Math.floor(Math.random() * 480); // start monster at random location
             this.dx = Math.floor(Math.random() * 5) + 2;
-            this.dy = Math.floor(Math.random() * 4) - 1;
+            this.dy = Math.floor(Math.random() * 4);
             this.flagNewMonster = true;
+            this.hFlag = true;
+            this.vFlag = true;
             this.updateNewMonster();
         }
 
@@ -84,6 +86,9 @@ module objects {
                 this.x -= this.dx; // drifts monster right and left
             else
                 this.x += this.dx; 
+
+
+            console.log("hFlag:" + this.hFlag + "   y:" + this.y);
 
             this.checkBounds();
         }

@@ -38,8 +38,8 @@ module states {
         game = new createjs.Container();
 
         // Instantiate Game Objects
-        space = new objects.Space(assets.getResult("space"), stage, game);
-        destroyer = new objects.Destroyer(assets.getResult("destroyer"), stage, game, true);
+        space = new objects.Space(<string>assets.getResult("space"), stage, game);
+        destroyer = new objects.Destroyer(<string>assets.getResult("destroyer"), stage, game, true);
 
         // Show Cursor
         stage.cursor = "default";
@@ -53,7 +53,7 @@ module states {
         game.addChild(gameInstructionLabel);
 
         // Display Play Again Button
-        playButton = new objects.Button(constants.CANVAS_WIDTH / 2, 380, assets.getResult("playNow"));
+        playButton = new objects.Button(constants.CANVAS_WIDTH / 2, 380, <string>assets.getResult("playNow"));
         game.addChild(playButton);
         playButton.addEventListener("click", playButtonClicked);
 
@@ -99,7 +99,6 @@ module states {
                 controls.lTally = 0;
                 break;
             case keys.SPACEBAR:
-
                 controls.spacebar = true;
                 controls.rTally++;
                 controls.lTally = 0;
@@ -131,7 +130,6 @@ module states {
                 break;
             case keys.SPACEBAR:
                 controls.spacebar = false;
-                this.flagRepeat = 0;
                 break;
         }
     }

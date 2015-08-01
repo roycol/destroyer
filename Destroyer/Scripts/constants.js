@@ -21,7 +21,9 @@ var constants;
     constants.LABEL_TITLE_FONT = "40px Consolas";
     constants.LABEL_CONTENT_FONT = "20px Consolas";
     constants.LABEL_COLOUR = "#FFFF00";
-    constants.DESTROYER_LIVES = 5;
+    constants.DESTROYER_LIVES = 50;
+    constants.DESTROYER_WEAPON_SPEED = 5;
+    constants.DESTROYER_WEAPON_LIMIT = 3000;
     // Canvas Constants
     constants.CANVAS_WIDTH = 700;
 })(constants || (constants = {}));

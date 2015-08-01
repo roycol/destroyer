@@ -22,7 +22,9 @@ module constants {
     export var LABEL_TITLE_FONT = "40px Consolas";
     export var LABEL_CONTENT_FONT = "20px Consolas";
     export var LABEL_COLOUR = "#FFFF00";
-    export var DESTROYER_LIVES = 5;
+    export var DESTROYER_LIVES = 50;
+    export var DESTROYER_WEAPON_SPEED = 5;
+    export var DESTROYER_WEAPON_LIMIT = 3000;
 
     // Canvas Constants
     export var CANVAS_WIDTH: number = 700;

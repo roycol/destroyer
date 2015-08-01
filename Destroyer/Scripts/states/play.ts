@@ -54,16 +54,16 @@ module states {
         game = new createjs.Container();
 
         // Instantiate Game Objects
-        space = new objects.Space(assets.getResult("space"), stage, game);
-        friend = new objects.Friend(assets.getResult("friend"), stage, game);
-        destroyer = new objects.Destroyer(assets.getResult("destroyer"), stage, game, true);
+        space = new objects.Space(<string>assets.getResult("space"), stage, game);
+        friend = new objects.Friend(<string>assets.getResult("friend"), stage, game);
+        destroyer = new objects.Destroyer(<string>assets.getResult("destroyer"), stage, game, true);
 
         // Show Cursor
         stage.cursor = "none";
 
         // Create multiple clouds
         for (var count = 0; count < constants.PLANET_NUM; count++) {
-            planets[count] = new objects.Planet(assets.getResult("planet"), stage, game);
+            planets[count] = new objects.Planet(<string>assets.getResult("planet"), stage, game);
         }
 
         // Display Scoreboard

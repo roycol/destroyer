@@ -27,6 +27,21 @@ module managers {
         }
 
         //PUBLIC METHODS ++++++++++++++++++++++++
+        // explosion impact
+        public monsterExplosion(monster: objects.Monster) {
+
+            var explosionImg: HTMLImageElement;
+            explosionImg = <HTMLImageElement> assets.getResult("explosion");
+            var explosion = new Explosion(explosionImg);
+            explosion.x = monster.x;
+            explosion.y = monster.y;
+                     
+            monster.reset();
+            game.addChild(explosion);
+
+        }
+
+        //PUBLIC METHODS ++++++++++++++++++++++++
         // check the distance between destroyer and planet object
         public planetCheck(planet: objects.Planet) {
                         
@@ -98,7 +113,7 @@ module managers {
             p2.y = missile.y;
 
 
-            if (utility.distance(p1, p2) < ((destroyer.height * 0.3) + (friend.height * 0.3))) {
+            if (utility.distance(p1, p2) < ((destroyer.height * 0.3) + (missile.height * 0.3))) {
                 if (missile.isColliding == false) {
                     createjs.Sound.play(missile.sound);
                     scoreboard.lives--;
@@ -110,6 +125,36 @@ module managers {
             }
             else {
                 missile.isColliding = false;
+            }
+        }
+
+        //PUBLIC METHODS ++++++++++++++++++++++++
+        // check the distance between destroyer weapon and monster object
+        public weaponCheck(weapon: objects.DestroyerWeapon) {
+
+            var p1: createjs.Point = new createjs.Point();
+            var p2: createjs.Point = new createjs.Point();
+
+            p1.x = weapon.x;
+            p1.y = weapon.y;
+
+            for (var i = 0; i < constants.MONSTER_NUM; i++){
+                p2.x = monsters[i].x;
+                p2.y = monsters[i].y;
+            
+                if (utility.distance(p1, p2) < ((destroyer.height * 0.3) + (monsters[i].height * 0.3))) {
+                    if (weapon.isColliding == false) {
+                        createjs.Sound.play(weapon.sound);
+                        scoreboard.score += 50;
+                        this.monsterExplosion(monsters[i]);
+                        weapon.destroy();
+                    }
+                    weapon.isColliding = true;
+
+                }
+                else {
+                    weapon.isColliding = false;
+                }
             }
         }
 
