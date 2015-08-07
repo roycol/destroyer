@@ -1,5 +1,5 @@
 ﻿/*
-    * file name: monsterMissile.ts
+    * file name: MonsterBossMissile.ts
     * author's name: Roy Kim
     * last modified by: Roy Kim
     * date last modified: July 31, 2015
@@ -9,20 +9,21 @@
 
 module objects {
     // monsterMissile Class ++++++++++++++++++++++++++++++++++++++
-    export class MonsterMissile extends objects.GameObject {
+    export class MonsterBossMissile extends objects.GameObject {
                 
         stage: createjs.Stage;
         game: createjs.Container;
-        monster: objects.Monster;
+
+        monsterBoss: objects.MonsterBoss;
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++
-        constructor(imageString: string, stage: createjs.Stage, game: createjs.Container, monster: Monster) {
+        constructor(imageString: string, stage: createjs.Stage, game: createjs.Container, monsterBoss: MonsterBoss) {
             super(imageString);
             this.stage = stage;
             this.game = game; 
-            this.name = "monsterMissile";
+            this.name = "monsterBossMissile";
             this.sound = "ahh";
-            this.monster = monster;
+            this.monsterBoss = monsterBoss;
 
             this.reset();
             game.addChild(this);
@@ -39,10 +40,10 @@ module objects {
 
 
         public reset(): void {  
-            this.x = this.monster.x;
-            this.y = this.monster.y;         
-            this.dx = Math.floor(Math.random() * 5) + 2;
-            this.dy = Math.floor(Math.random() * 4) - 1;
+            this.x = this.monsterBoss.x;
+            this.y = this.monsterBoss.y;         
+            this.dx = Math.floor(Math.random() * -10);
+            this.dy = Math.floor(Math.random() * 4)-2;
         }
 
 
@@ -50,7 +51,7 @@ module objects {
         public update(): void {
 
             this.y += this.dy; // moves monsterMissile down the stage
-            this.x -= this.dx; // drifts monsterMissile right and left
+            this.x -= this.dx++; // drifts monsterMissile right and left
             this.checkBounds();
         }
 

@@ -10,7 +10,6 @@
 module managers {
     export class Collision {
 
-        
         //CONSTRUCTOR +++++++++++++++++++++++++++
         constructor() {                     
         }
@@ -35,8 +34,23 @@ module managers {
             var explosion = new Explosion(explosionImg);
             explosion.x = monster.x;
             explosion.y = monster.y;
-                     
+
             monster.reset();
+            game.addChild(explosion);
+
+        }
+
+        //PUBLIC METHODS ++++++++++++++++++++++++
+        // explosion impact
+        public monsterBossExplosion(monsterBoss: objects.MonsterBoss) {
+
+            var explosionImg: HTMLImageElement;
+            explosionImg = <HTMLImageElement> assets.getResult("explosion");
+            var explosion = new Explosion(explosionImg);
+            explosion.x = monsterBoss.x;
+            explosion.y = monsterBoss.y;
+
+            monsterBoss.reset();
             game.addChild(explosion);
 
         }
@@ -155,6 +169,68 @@ module managers {
                 else {
                     weapon.isColliding = false;
                 }
+            }
+        }
+
+        //PUBLIC METHODS ++++++++++++++++++++++++
+        // check the distance between destroyer and bossMissile object
+        public bossMissileCheck(bossMissile: objects.MonsterBossMissile) {
+
+            var p1: createjs.Point = new createjs.Point();
+            var p2: createjs.Point = new createjs.Point();
+
+            p1.x = destroyer.x;
+            p1.y = destroyer.y;
+
+            p2.x = bossMissile.x;
+            p2.y = bossMissile.y;
+
+
+            if (utility.distance(p1, p2) < ((destroyer.height * 0.3) + (bossMissile.height * 0.3))) {
+                if (bossMissile.isColliding == false) {
+                    createjs.Sound.play(bossMissile.sound);
+                    scoreboard.lives--;
+                    this.changeDestroyerImg(1000);
+                    bossMissile.reset();
+                }
+                bossMissile.isColliding = true;
+
+            }
+            else {
+                bossMissile.isColliding = false;
+            }
+        }
+
+        //PUBLIC METHODS ++++++++++++++++++++++++
+        // check the distance between destroyer weapon and monsterBoss object
+        public weaponCheckForBoss(weapon: objects.DestroyerWeapon) {
+
+            var p1: createjs.Point = new createjs.Point();
+            var p2: createjs.Point = new createjs.Point();
+
+            p1.x = weapon.x;
+            p1.y = weapon.y;
+
+            p2.x = monsterBoss.x;
+            p2.y = monsterBoss.y;
+
+            if (utility.distance(p1, p2) < ((destroyer.height * 0.3) + (monsterBoss.height * 0.3))) {
+                if (weapon.isColliding == false) {
+                    createjs.Sound.play(weapon.sound);
+                    if (monsterBossLife == 0) {
+                        scoreboard.score += 500;
+                        this.monsterBossExplosion(monsterBoss);
+                    } else {
+                        monsterBossLife--;
+                    }
+
+                    weapon.destroy();
+                }
+                weapon.isColliding = true;
+
+            }
+            else {
+                weapon.isColliding = false;
             }
         }
 

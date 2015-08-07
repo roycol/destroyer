@@ -13,6 +13,7 @@ module objects {
                 
         stage: createjs.Stage;
         game: createjs.Container;
+        isDestroyed: boolean = false;
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++
         constructor(imageString: string, stage: createjs.Stage, game: createjs.Container) {
@@ -31,7 +32,6 @@ module objects {
 
             // check if cloud has left screen
             if (this.x > 700 + this.width) {
-                //this.reset();
                 this.destroy();
             }
             
@@ -51,6 +51,7 @@ module objects {
         }
 
         destroy() {
+            this.isDestroyed = true;
             game.removeChild(this);
         }
     }

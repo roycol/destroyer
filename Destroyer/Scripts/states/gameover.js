@@ -20,15 +20,38 @@ var states;
         space.update();
     }
     states.gameOverState = gameOverState;
-    // Restart Game when Try Again Button is clicked
+    // Restart Game from current level when Try Again Button is clicked
     function tryAgainClicked(event) {
+        stage.removeChild(game);
+        game.removeAllChildren();
+        game.removeAllEventListeners();
+        monsterBossLife = constants.MONSTER_BOSS_LIFE;
+        scoreboard.lives = constants.DESTROYER_LIVES;
+        scoreboard.score = 0;
+        destroyerWeaponNum = 0;
+        switch (currentLvl) {
+            case 1:
+                currentState = constants.PLAY_STATE_LEVEL_1;
+                break;
+            case 2:
+                currentState = constants.PLAY_STATE_LEVEL_2_PLAY;
+                break;
+            case 3:
+                currentState = constants.PLAY_STATE_LEVEL_3_PLAY;
+                break;
+        }
+        changeState(currentState);
+    }
+    states.tryAgainClicked = tryAgainClicked;
+    // Restart Game from the beginning when New Game Button is clicked
+    function newGameClicked(event) {
         stage.removeChild(game);
         game.removeAllChildren();
         game.removeAllEventListeners();
         currentState = constants.PLAY_STATE_LEVEL_1;
         changeState(currentState);
     }
-    states.tryAgainClicked = tryAgainClicked;
+    states.newGameClicked = newGameClicked;
     // Game Over Scene
     function gameOver() {
         var gameOverLabel;
@@ -50,9 +73,13 @@ var states;
         finalScore = new objects.Label(constants.CANVAS_WIDTH / 2, 160, scoreboard.score.toString(), constants.LABEL_CONTENT_FONT);
         game.addChild(finalScore);
         // Display Try Again Button
-        tryAgain = new objects.Button(constants.CANVAS_WIDTH / 2, 300, assets.getResult("tryAgain"));
+        tryAgain = new objects.Button(constants.CANVAS_WIDTH / 2 - 130, 300, assets.getResult("tryAgain"));
         game.addChild(tryAgain);
         tryAgain.addEventListener("click", tryAgainClicked);
+        // Display New Game Button
+        newGame = new objects.Button(constants.CANVAS_WIDTH / 2 + 130, 300, assets.getResult("newGame"));
+        game.addChild(newGame);
+        newGame.addEventListener("click", newGameClicked);
         stage.addChild(game);
     }
     states.gameOver = gameOver;

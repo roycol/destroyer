@@ -14,6 +14,8 @@ module objects {
         stage: createjs.Stage;
         game: createjs.Container;
         spaceSound: createjs.SoundInstance;
+        isStageClear: boolean = false;
+        isClearSoundPlayed: boolean = false;
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++
         constructor(imageString:string, stage: createjs.Stage, game: createjs.Container, isActor:boolean) {
@@ -29,7 +31,6 @@ module objects {
                 this.spaceSound = createjs.Sound.play(this.sound, { "loop": -1 });
                 game.addChild(this);
             }
-
             this.reset();
         }
 
@@ -45,7 +46,7 @@ module objects {
                 this.y -= 7;
             } else if (control.left == true && this.x > 30) {
                 this.x -= 7;
-            } else if (control.right == true && this.x < 670) {
+            } else if (control.right == true && this.x < 450) {
                 this.x += 7;
             }
         }
@@ -54,12 +55,30 @@ module objects {
             this.spaceSound.stop();
             this.game.removeChild(this);
         }
+
+        public stageClear() {
+            
+            this.isStageClear = true;            
+            if (!this.isClearSoundPlayed) {
+                createjs.Sound.play("fanfare");
+                this.isClearSoundPlayed = true;
+            }
+            this.x += 3;
+            this.rolling();
+            if (this.x > 700 + this.width) {
+                this.spaceSound.stop();
+                this.game.removeChild(this);
+                this.isStageClear = false;
+            }
+             
+
+        }
         
         public reset() {
             // reset plane after colliding with enemy
             this.visible = true;
             this.x = -100;
-            this.y = Math.floor(Math.random() * 480);
+            this.y = Math.floor(Math.random() * 420) + 20;
             flagNewDestroyer = true;
             this.updateNewDestroyer();
         }
@@ -69,6 +88,10 @@ module objects {
             if (this.x > 60) {
                 flagNewDestroyer = false;
             }
+        }
+        
+        public rolling() {
+            this.rotation += 5;
         }        
     }
 } 

@@ -25,6 +25,8 @@ module objects {
             this.game = game;
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
+            this.x = 0;
+            this.y = 0;
 
             this.reset();
 
@@ -43,7 +45,7 @@ module objects {
 
         private reset(): void {
             this.x = 0;
-            this.y = 0; // reset ocean off screen
+            this.y = 0;
         }
 
 

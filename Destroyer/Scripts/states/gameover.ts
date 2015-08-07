@@ -20,8 +20,32 @@ module states {
         space.update();
     }
 
-    // Restart Game when Try Again Button is clicked
+    // Restart Game from current level when Try Again Button is clicked
     export function tryAgainClicked(event: MouseEvent) {
+        stage.removeChild(game);
+        game.removeAllChildren();
+        game.removeAllEventListeners();
+        monsterBossLife = constants.MONSTER_BOSS_LIFE;
+        scoreboard.lives = constants.DESTROYER_LIVES;
+        scoreboard.score = 0;
+        destroyerWeaponNum = 0;
+        switch (currentLvl) {
+            case 1:
+                currentState = constants.PLAY_STATE_LEVEL_1;
+                break;
+            case 2:
+                currentState = constants.PLAY_STATE_LEVEL_2_PLAY;
+                break;
+            case 3:
+                currentState = constants.PLAY_STATE_LEVEL_3_PLAY;
+                break;
+        }
+        changeState(currentState);
+
+    }
+
+    // Restart Game from the beginning when New Game Button is clicked
+    export function newGameClicked(event: MouseEvent) {
         stage.removeChild(game);
         game.removeAllChildren();
         game.removeAllEventListeners();
@@ -57,9 +81,14 @@ module states {
         game.addChild(finalScore);
 
         // Display Try Again Button
-        tryAgain = new objects.Button(constants.CANVAS_WIDTH / 2, 300, <string>assets.getResult("tryAgain"));
+        tryAgain = new objects.Button(constants.CANVAS_WIDTH / 2 - 130, 300, <string>assets.getResult("tryAgain"));
         game.addChild(tryAgain);
         tryAgain.addEventListener("click", tryAgainClicked);
+
+        // Display New Game Button
+        newGame = new objects.Button(constants.CANVAS_WIDTH / 2 + 130, 300, <string>assets.getResult("newGame"));
+        game.addChild(newGame);
+        newGame.addEventListener("click", newGameClicked);
 
         stage.addChild(game);
 

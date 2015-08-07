@@ -20,6 +20,8 @@ var objects;
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++
         function Destroyer(imageString, stage, game, isActor) {
             _super.call(this, imageString);
+            this.isStageClear = false;
+            this.isClearSoundPlayed = false;
             this.stage = stage;
             this.game = game;
             this.name = "destroyer";
@@ -46,7 +48,7 @@ var objects;
             else if (control.left == true && this.x > 30) {
                 this.x -= 7;
             }
-            else if (control.right == true && this.x < 670) {
+            else if (control.right == true && this.x < 450) {
                 this.x += 7;
             }
         };
@@ -54,11 +56,25 @@ var objects;
             this.spaceSound.stop();
             this.game.removeChild(this);
         };
+        Destroyer.prototype.stageClear = function () {
+            this.isStageClear = true;
+            if (!this.isClearSoundPlayed) {
+                createjs.Sound.play("fanfare");
+                this.isClearSoundPlayed = true;
+            }
+            this.x += 3;
+            this.rolling();
+            if (this.x > 700 + this.width) {
+                this.spaceSound.stop();
+                this.game.removeChild(this);
+                this.isStageClear = false;
+            }
+        };
         Destroyer.prototype.reset = function () {
             // reset plane after colliding with enemy
             this.visible = true;
             this.x = -100;
-            this.y = Math.floor(Math.random() * 480);
+            this.y = Math.floor(Math.random() * 420) + 20;
             flagNewDestroyer = true;
             this.updateNewDestroyer();
         };
@@ -67,6 +83,9 @@ var objects;
             if (this.x > 60) {
                 flagNewDestroyer = false;
             }
+        };
+        Destroyer.prototype.rolling = function () {
+            this.rotation += 5;
         };
         return Destroyer;
     })(objects.GameObject);

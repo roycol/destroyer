@@ -25,12 +25,17 @@
 /// <reference path="managers/collision.ts" />
 /// <reference path="objects/monster.ts" />
 /// <reference path="objects/monstermissile.ts" />
+/// <reference path="objects/monsterboss.ts" />
+/// <reference path="objects/monsterbossmissile.ts" />
 /// <reference path="objects/destroyerweapon.ts" />
 /// <reference path="objects/explosion.ts" />
 
-/// <reference path="states/play.ts" />
-/// <reference path="states/playlvl2.ts" />
 /// <reference path="states/menu.ts" />
+/// <reference path="states/play.ts" />
+/// <reference path="states/introlvl2.ts" />
+/// <reference path="states/playlvl2.ts" />
+/// <reference path="states/introlvl3.ts" />
+/// <reference path="states/playlvl3.ts" />
 /// <reference path="states/gameover.ts" />
 
 /// <reference path="controls.ts" />
@@ -45,6 +50,7 @@ var stats: Stats;
 var assets: createjs.LoadQueue;
 var manifest = [
     { id: "space", src: "assets/images/space.png" },
+    { id: "space2", src: "assets/images/space2.gif" },
     { id: "destroyer", src: "assets/images/destroyer.png" },
     { id: "destroyerCrash", src: "assets/images/destroyerCrash.png" },
     { id: "destroyerWeapon", src: "assets/images/shuriken.png" }, 
@@ -52,14 +58,19 @@ var manifest = [
     { id: "planet", src: "assets/images/planet.png" },
     { id: "playNow", src: "assets/images/playnow.png" },
     { id: "tryAgain", src: "assets/images/tryagain.png" },
+    { id: "newGame", src: "assets/images/newgame.png" },
     { id: "monster", src: "assets/images/monster.png" },
+    { id: "monsterBoss", src: "assets/images/boss.png" },
     { id: "missile", src: "assets/images/missile.png" },
+    { id: "monsterBossMissile", src: "assets/images/missileBoss.png" },
     { id: "monsterMissile", src: "assets/images/monsterMissile.png" },
     { id: "explosion", src: "assets/images/explosion.png" },
     { id: "collision", src: "assets/audio/collision.wav" },
     { id: "flight", src: "assets/audio/flight.wav" },
     { id: "rescueFriend", src: "assets/audio/rescueFriend.wav" },
     { id: "growl", src: "assets/audio/monster.wav" },
+    { id: "boss", src: "assets/audio/monsterBoss.wav" },
+    { id: "fanfare", src: "assets/audio/fanfare.wav" },
     { id: "ahh", src: "assets/audio/ahh.wav" }    
 ];
 
@@ -68,16 +79,19 @@ var manifest = [
 var space: objects.Space;
 var destroyer: objects.Destroyer;
 var friend: objects.Friend;
+var monsterBoss: objects.MonsterBoss;
+var monsterBossLife: number = constants.MONSTER_BOSS_LIFE;
 var planets: objects.Planet[] = [];
 var monsters: objects.Monster[] = [];
 var destroyerWeapons: objects.DestroyerWeapon[] = [];
 var destroyerWeaponNum: number = 0;
-//var monsterMissiles: objects.MonsterMissile[] = [];
+var bossMissileArr: objects.MonsterBossMissile[] = [];
 var missileArr = new Array<objects.MonsterMissile[]>(constants.MONSTER_NUM);
 var destroyerNormal: objects.Destroyer;
 var destroyerCrash: objects.Destroyer;   
 var currentState: number;
 var currentStateFunction;
+var currentLvl: number = 1;
 
 var scoreboard: objects.Scoreboard;
 
@@ -87,6 +101,7 @@ var collision: managers.Collision;
 // Buttons
 var tryAgain: objects.Button;
 var playButton: objects.Button;
+var newGame: objects.Button;
 
 // Game flags
 var flagNewDestroyer = true;
@@ -168,16 +183,28 @@ function changeState(state: number): void {
             states.play();
             break;
 
-        case constants.PLAY_STATE_LEVEL_2:                        
-            // instantiate play screen
+        case constants.PLAY_STATE_LEVEL_2_INTRO:                        
+            // instantiate lvl2 instruction screen
+            currentStateFunction = states.introStateLvl2;
+            states.introLvl2();
+            break;
+
+        case constants.PLAY_STATE_LEVEL_2_PLAY:                        
+            // instantiate lvl2 play screen
             currentStateFunction = states.playStateLvl2;
             states.playLvl2();
             break;
 
-        case constants.PLAY_STATE_LEVEL_3:                        
-            // instantiate play screen
-            currentStateFunction = states.playStateLvl2;
-            states.playLvl2();
+        case constants.PLAY_STATE_LEVEL_3_INTRO:                        
+            // instantiate lvl3 instruction screen
+            currentStateFunction = states.introStateLvl3;
+            states.introLvl3();
+            break;
+
+        case constants.PLAY_STATE_LEVEL_3_PLAY:                        
+            // instantiate lvl3 play screen
+            currentStateFunction = states.playStateLvl3;
+            states.playLvl3();
             break;
 
         case constants.GAME_OVER_STATE:

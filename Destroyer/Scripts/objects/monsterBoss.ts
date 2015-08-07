@@ -9,11 +9,10 @@
 
 module objects {
     // monster Class ++++++++++++++++++++++++++++++++++++++
-    export class Monster extends objects.GameObject {
+    export class MonsterBoss extends objects.GameObject {
                 
         stage: createjs.Stage;
         game: createjs.Container;
-        monsterMissiles: objects.MonsterMissile[]
         flagNewMonster: boolean;
         hFlag: boolean;
         vFlag: boolean;
@@ -23,24 +22,15 @@ module objects {
             super(imageString);
             this.stage = stage;
             this.game = game; 
-            this.name = "monster";
-            this.sound = "growl";
+            this.name = "monsterBoss";
+            this.sound = "boss";
             this.hFlag = true;
             this.vFlag = true;
 
+            createjs.Sound.play(this.sound);
             this.reset();
-            //this.launchMissile();
             game.addChild(this);
         }
-
-        // PRIVATE METHODS ++++++++++++++++++++++++++++++
-        //private launchMissile(): void {
-        //    // Create multiple missile
-        //    for (var count = 0; count < constants.MONSTER_MISSILE_NUM; count++) {
-        //        this.monsterMissiles[count] = new objects.MonsterMissile(assets.getResult("missile"), stage, game, this);
-        //    }
-        //    monsterMissiles = this.monsterMissiles;
-        //}
 
         // PRIVATE METHODS ++++++++++++++++++++++++++++++
         private checkBounds(): void {
@@ -52,9 +42,9 @@ module objects {
                 this.hFlag = false;
 
             //change vertical direction
-            if (this.x <= 400)
+            if (this.x <= 450)
                 this.vFlag = false;
-            else if (this.x >= 650)
+            else if (this.x >= 600)
                 this.vFlag = true;
 
         }
@@ -64,7 +54,7 @@ module objects {
             this.x = 700 + this.width; // start monster off stage
             this.y = Math.floor(Math.random() * 480); // start monster at random location
             this.dx = Math.floor(Math.random() * 5) + 2;
-            this.dy = Math.floor(Math.random() * 4);
+            this.dy = Math.floor(Math.random() * 4) + 1;
             this.flagNewMonster = true;
             this.hFlag = true;
             this.vFlag = true;
@@ -95,7 +85,7 @@ module objects {
 
         public updateNewMonster() {
             this.x -= 5;
-            if (this.x < 650) {
+            if (this.x < 400) {
                 this.flagNewMonster = false;                
             }
         }

@@ -37,7 +37,7 @@ var objects;
         };
         Friend.prototype.reset = function () {
             this.x = 700 + this.width; // start friend off stage
-            this.y = Math.floor(Math.random() * 480); // start friend at random location
+            this.y = Math.floor(Math.random() * 440) + 20; // start friend at random location
         };
         // PUBLIC METHODS +++++++++++++++++++++++++++++++
         Friend.prototype.update = function () {

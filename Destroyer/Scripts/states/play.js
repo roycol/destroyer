@@ -19,13 +19,15 @@ var states;
     function playState() {
         space.update();
         friend.update();
-        destroyer.update(controls);
         for (var count = 0; count < constants.PLANET_NUM; count++) {
             planets[count].update();
         }
-        ////add collision manager
-        collision.update();
-        scoreboard.update();
+        if (!destroyer.isStageClear) {
+            destroyer.update(controls);
+            scoreboard.update();
+            ////add collision manager
+            collision.update();
+        }
         if (scoreboard.lives <= 0) {
             stage.removeChild(game);
             destroyer.destroy();
@@ -34,13 +36,20 @@ var states;
             currentState = constants.GAME_OVER_STATE;
             changeState(currentState);
         }
-        if (scoreboard.score >= 300) {
-            stage.removeChild(game);
-            destroyer.destroy();
-            game.removeAllChildren();
-            game.removeAllEventListeners();
-            currentState = constants.PLAY_STATE_LEVEL_2;
-            changeState(currentState);
+        if (scoreboard.score >= constants.LEVEL_1_CLEAR_SCORE) {
+            destroyer.stageClear();
+            friend.destroy();
+            for (var count = 0; count < constants.PLANET_NUM; count++) {
+                planets[count].destroy();
+            }
+            if (!destroyer.isStageClear) {
+                destroyer.destroy();
+                game.removeAllChildren();
+                game.removeAllEventListeners();
+                stage.removeChild(game);
+                currentState = constants.PLAY_STATE_LEVEL_2_INTRO;
+                changeState(currentState);
+            }
         }
     }
     states.playState = playState;
@@ -61,7 +70,7 @@ var states;
         // Display Scoreboard
         scoreboard = new objects.Scoreboard(stage, game, constants.DESTROYER_LIVES, 0);
         // Instantiate Collision Manager
-        collision = collision = new managers.Collision();
+        collision = new managers.Collision();
         stage.addChild(game);
         this.assignControls();
     }
