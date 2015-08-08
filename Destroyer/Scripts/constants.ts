@@ -29,8 +29,8 @@ module constants {
     export var DESTROYER_LIVES = 10;
     export var DESTROYER_WEAPON_SPEED = 5;
     export var DESTROYER_WEAPON_LIMIT = 3000;
-    export var LEVEL_1_CLEAR_SCORE = 300;
-    export var LEVEL_2_CLEAR_SCORE = 600;
+    export var LEVEL_1_CLEAR_SCORE = 500;
+    export var LEVEL_2_CLEAR_SCORE = 1000;
 
     // Canvas Constants
     export var CANVAS_WIDTH: number = 700;

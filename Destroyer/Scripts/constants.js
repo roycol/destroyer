@@ -28,8 +28,8 @@ var constants;
     constants.DESTROYER_LIVES = 10;
     constants.DESTROYER_WEAPON_SPEED = 5;
     constants.DESTROYER_WEAPON_LIMIT = 3000;
-    constants.LEVEL_1_CLEAR_SCORE = 300;
-    constants.LEVEL_2_CLEAR_SCORE = 600;
+    constants.LEVEL_1_CLEAR_SCORE = 500;
+    constants.LEVEL_2_CLEAR_SCORE = 1000;
     // Canvas Constants
     constants.CANVAS_WIDTH = 700;
 })(constants || (constants = {}));
