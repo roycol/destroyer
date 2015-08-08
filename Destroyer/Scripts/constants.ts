@@ -26,7 +26,7 @@ module constants {
     export var LABEL_TITLE_FONT = "40px Consolas";
     export var LABEL_CONTENT_FONT = "20px Consolas";
     export var LABEL_COLOUR = "#FFFF00";
-    export var DESTROYER_LIVES = 20;
+    export var DESTROYER_LIVES = 10;
     export var DESTROYER_WEAPON_SPEED = 5;
     export var DESTROYER_WEAPON_LIMIT = 3000;
     export var LEVEL_1_CLEAR_SCORE = 300;
