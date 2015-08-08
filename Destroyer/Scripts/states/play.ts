@@ -25,10 +25,10 @@ module states {
         }
         
         if (!destroyer.isStageClear) {
-            destroyer.update(controls);
-            scoreboard.update();
             ////add collision manager
             collision.update();
+            destroyer.update(controls);
+            scoreboard.update();
         }
 
         if (scoreboard.lives <= 0) {
@@ -75,7 +75,7 @@ module states {
 
         // Create multiple clouds
         for (var count = 0; count < constants.PLANET_NUM; count++) {
-            planets[count] = new objects.Planet(<string>assets.getResult("planet"), stage, game);
+            planets[count] = new objects.Planet(count % 2 == 0 ? <string>assets.getResult("planet") : <string>assets.getResult("mercury"), stage, game);
         }
 
         // Display Scoreboard

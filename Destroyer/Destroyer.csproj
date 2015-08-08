@@ -66,6 +66,7 @@
     <Content Include="assets\audio\monster.wav" />
     <Content Include="assets\audio\monsterBoss.wav" />
     <Content Include="assets\audio\rescueFriend.wav" />
+    <Content Include="assets\images\background.gif" />
     <Content Include="assets\images\destroyer.png" />
     <Content Include="assets\images\destroyerCrash.png" />
     <Content Include="assets\images\boss.png" />
@@ -75,12 +76,14 @@
     <Content Include="assets\images\monster.png" />
     <Content Include="assets\images\monsterMissile.png" />
     <Content Include="assets\images\newgame.png" />
-    <Content Include="assets\images\planet.png" />
     <Content Include="assets\images\friend.png" />
+    <Content Include="assets\images\planet-mercury.png" />
+    <Content Include="assets\images\planet.png" />
     <Content Include="assets\images\playnow.png" />
     <Content Include="assets\images\shuriken.png" />
     <Content Include="assets\images\space.png" />
-    <Content Include="assets\images\space2.gif" />
+    <Content Include="assets\images\space2.png" />
+    <Content Include="assets\images\space3.png" />
     <Content Include="assets\images\tryagain.png" />
     <Content Include="packages.config" />
     <Content Include="Scripts\lib\preloadjs-0.6.0.min.js" />

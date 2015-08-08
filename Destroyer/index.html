@@ -1,5 +1,5 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <!--
     * file name: index.html
     * author's name: Roy Kim
@@ -17,7 +17,9 @@
 </head>
 <body onload="preload();">
     <!-- Game Container -->
-    <canvas id="canvas" width="700" height="480"></canvas>
+    <div style="margin-top:50px" align="center">
+        <canvas id="canvas" width="700" height="480"></canvas>
+    </div>
 
     <!-- JavaScript Section -->
     <script src="Scripts/lib/Stats.js"></script>
@@ -31,7 +33,7 @@
     <script src="Scripts/utility/utility.js"></script>
     <script src="Scripts/objects/gameobject.js"></script>
     <script src="Scripts/objects/space.js"></script>
-    <script src="Scripts/objects/destroyer.js"></script>    
+    <script src="Scripts/objects/destroyer.js"></script>
     <script src="Scripts/objects/friend.js"></script>
     <script src="Scripts/objects/planet.js"></script>
     <script src="Scripts/objects/button.js"></script>
@@ -46,7 +48,7 @@
     <script src="Scripts/objects/monsterBossMissile.js"></script>
     <script src="Scripts/objects/destroyerWeapon.js"></script>
     <script src="Scripts/objects/explosion.js"></script>
-          
+
     <script src="Scripts/states/menu.js"></script>
     <script src="Scripts/states/play.js"></script>
     <script src="Scripts/states/introLvl2.js"></script>
@@ -54,9 +56,10 @@
     <script src="Scripts/states/introLvl3.js"></script>
     <script src="Scripts/states/playLvl3.js"></script>
     <script src="Scripts/states/gameover.js"></script>
-    
+
 
     <!-- Game Scripts -->
     <script src="Scripts/game.js"></script>
-</body>
+
+    </body>
 </html>

@@ -23,10 +23,10 @@ var states;
             planets[count].update();
         }
         if (!destroyer.isStageClear) {
-            destroyer.update(controls);
-            scoreboard.update();
             ////add collision manager
             collision.update();
+            destroyer.update(controls);
+            scoreboard.update();
         }
         if (scoreboard.lives <= 0) {
             stage.removeChild(game);
@@ -65,7 +65,7 @@ var states;
         stage.cursor = "none";
         // Create multiple clouds
         for (var count = 0; count < constants.PLANET_NUM; count++) {
-            planets[count] = new objects.Planet(assets.getResult("planet"), stage, game);
+            planets[count] = new objects.Planet(count % 2 == 0 ? assets.getResult("planet") : assets.getResult("mercury"), stage, game);
         }
         // Display Scoreboard
         scoreboard = new objects.Scoreboard(stage, game, constants.DESTROYER_LIVES, 0);

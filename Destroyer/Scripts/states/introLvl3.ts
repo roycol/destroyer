@@ -39,7 +39,7 @@ module states {
         game = new createjs.Container();
 
         // Instantiate Game Objects
-        space = new objects.Space(<string>assets.getResult("space"), stage, game);
+        space = new objects.Space(<string>assets.getResult("space3"), stage, game);
         destroyer = new objects.Destroyer(<string>assets.getResult("destroyer"), stage, game, true);
 
         // Show Cursor

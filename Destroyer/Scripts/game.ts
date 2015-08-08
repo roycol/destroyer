@@ -50,12 +50,14 @@ var stats: Stats;
 var assets: createjs.LoadQueue;
 var manifest = [
     { id: "space", src: "assets/images/space.png" },
-    { id: "space2", src: "assets/images/space2.gif" },
+    { id: "space2", src: "assets/images/space2.png" },
+    { id: "space3", src: "assets/images/space3.png" },
     { id: "destroyer", src: "assets/images/destroyer.png" },
     { id: "destroyerCrash", src: "assets/images/destroyerCrash.png" },
     { id: "destroyerWeapon", src: "assets/images/shuriken.png" }, 
     { id: "friend", src: "assets/images/friend.png" },
     { id: "planet", src: "assets/images/planet.png" },
+    { id: "mercury", src: "assets/images/planet-mercury.png" },
     { id: "playNow", src: "assets/images/playnow.png" },
     { id: "tryAgain", src: "assets/images/tryagain.png" },
     { id: "newGame", src: "assets/images/newgame.png" },
@@ -80,7 +82,6 @@ var space: objects.Space;
 var destroyer: objects.Destroyer;
 var friend: objects.Friend;
 var monsterBoss: objects.MonsterBoss;
-var monsterBossLife: number = constants.MONSTER_BOSS_LIFE;
 var planets: objects.Planet[] = [];
 var monsters: objects.Monster[] = [];
 var destroyerWeapons: objects.DestroyerWeapon[] = [];
@@ -155,8 +156,8 @@ function setupStats() {
 
     // align bottom-right
     stats.domElement.style.position = 'absolute';
-    stats.domElement.style.left = '720px';
-    stats.domElement.style.top = '10px';
+    stats.domElement.style.left = '1000px';
+    stats.domElement.style.top = '550px';
 
     document.body.appendChild(stats.domElement);
 }

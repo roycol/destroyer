@@ -26,7 +26,6 @@ var states;
             monsters[i].update();
             for (var j = 0; j < constants.MONSTER_MISSILE_NUM; j++) {
                 missileArr[i][j].update();
-                collision.missileCheck(missileArr[i][j]);
             }
         }
         // launch destroyer weapon
@@ -41,17 +40,14 @@ var states;
                 }, 300);
             }
         }
-        else {
-        }
         for (var count = 0; count < destroyerWeaponNum; count++) {
             destroyerWeapons[count].update();
-            collision.weaponCheck(destroyerWeapons[count]);
         }
         if (!destroyer.isStageClear) {
+            //add collision manager
+            collision.updateLvl2();
             destroyer.update(controls);
             scoreboard.update();
-            ////add collision manager
-            collision.update();
         }
         if (scoreboard.lives <= 0) {
             stage.removeChild(game);
@@ -89,14 +85,14 @@ var states;
         // Declare new Game Container
         game = new createjs.Container();
         // Instantiate Game Objects
-        space = new objects.Space(assets.getResult("space"), stage, game);
+        space = new objects.Space(assets.getResult("space2"), stage, game);
         friend = new objects.Friend(assets.getResult("friend"), stage, game);
         destroyer = new objects.Destroyer(assets.getResult("destroyer"), stage, game, true);
         // Show Cursor
         stage.cursor = "none";
         // Create multiple planets
         for (var count = 0; count < constants.PLANET_NUM; count++) {
-            planets[count] = new objects.Planet(assets.getResult("planet"), stage, game);
+            planets[count] = new objects.Planet(count % 2 == 1 ? assets.getResult("planet") : assets.getResult("mercury"), stage, game);
         }
         // Create multiple monsters
         for (var i = 0; i < constants.MONSTER_NUM; i++) {

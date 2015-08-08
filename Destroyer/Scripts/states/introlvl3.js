@@ -37,7 +37,7 @@ var states;
         // Declare new Game Container
         game = new createjs.Container();
         // Instantiate Game Objects
-        space = new objects.Space(assets.getResult("space"), stage, game);
+        space = new objects.Space(assets.getResult("space3"), stage, game);
         destroyer = new objects.Destroyer(assets.getResult("destroyer"), stage, game, true);
         // Show Cursor
         stage.cursor = "default";

@@ -14,6 +14,7 @@ module objects {
         stage: createjs.Stage;
         game: createjs.Container;
         flagNewMonster: boolean;
+        life: number;
         hFlag: boolean;
         vFlag: boolean;
 
@@ -26,6 +27,7 @@ module objects {
             this.sound = "boss";
             this.hFlag = true;
             this.vFlag = true;
+            this.life = constants.MONSTER_BOSS_LIFE;
 
             createjs.Sound.play(this.sound);
             this.reset();

@@ -25,7 +25,6 @@ var states;
         stage.removeChild(game);
         game.removeAllChildren();
         game.removeAllEventListeners();
-        monsterBossLife = constants.MONSTER_BOSS_LIFE;
         scoreboard.lives = constants.DESTROYER_LIVES;
         scoreboard.score = 0;
         destroyerWeaponNum = 0;
@@ -45,6 +44,7 @@ var states;
     states.tryAgainClicked = tryAgainClicked;
     // Restart Game from the beginning when New Game Button is clicked
     function newGameClicked(event) {
+        destroyerWeaponNum = 0;
         stage.removeChild(game);
         game.removeAllChildren();
         game.removeAllEventListeners();
@@ -60,7 +60,17 @@ var states;
         // Declare new Game Container
         game = new createjs.Container();
         // Instantiate Game Objects
-        space = new objects.Space(assets.getResult("space"), stage, game);
+        switch (currentLvl) {
+            case 1:
+                space = new objects.Space(assets.getResult("space"), stage, game);
+                break;
+            case 2:
+                space = new objects.Space(assets.getResult("space2"), stage, game);
+                break;
+            case 3:
+                space = new objects.Space(assets.getResult("space3"), stage, game);
+                break;
+        }
         // Show Cursor
         stage.cursor = "default";
         // Display Game Over

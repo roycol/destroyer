@@ -26,6 +26,7 @@ var objects;
             this.sound = "boss";
             this.hFlag = true;
             this.vFlag = true;
+            this.life = constants.MONSTER_BOSS_LIFE;
             createjs.Sound.play(this.sound);
             this.reset();
             game.addChild(this);

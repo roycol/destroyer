@@ -21,13 +21,11 @@ var states;
         monsterBoss.update();
         for (var i = 0; i < constants.MONSTER_BOSS_MISSILE_NUM; i++) {
             bossMissileArr[i].update();
-            collision.bossMissileCheck(bossMissileArr[i]);
         }
         for (var i = 0; i < constants.MONSTER_NUM; i++) {
             monsters[i].update();
             for (var j = 0; j < constants.MONSTER_MISSILE_NUM; j++) {
                 missileArr[i][j].update();
-                collision.missileCheck(missileArr[i][j]);
             }
         }
         // launch destroyer weapon
@@ -36,29 +34,32 @@ var states;
                 if (!flagSpacebarRepeat) {
                     destroyerWeapons[destroyerWeaponNum++] = new objects.DestroyerWeapon(assets.getResult("destroyerWeapon"), stage, game);
                     flagSpacebarRepeat = true;
-                    console.log("destroyerWeapons: " + destroyerWeaponNum);
                 }
                 setTimeout(function () {
                     flagSpacebarRepeat = false;
                 }, 300);
             }
         }
-        else {
-        }
         for (var count = 0; count < destroyerWeaponNum; count++) {
             if (!destroyerWeapons[count].isDestroyed) {
                 destroyerWeapons[count].update();
-                collision.weaponCheck(destroyerWeapons[count]);
-                collision.weaponCheckForBoss(destroyerWeapons[count]);
             }
         }
         if (!destroyer.isStageClear) {
+            //add collision manager
+            collision.updateLvl3();
             destroyer.update(controls);
             scoreboard.update();
-            ////add collision manager
-            collision.update();
         }
-        if (scoreboard.lives <= 0 || monsterBossLife == 0) {
+        if (scoreboard.lives <= 0) {
+            stage.removeChild(game);
+            destroyer.destroy();
+            game.removeAllChildren();
+            game.removeAllEventListeners();
+            currentState = constants.GAME_OVER_STATE;
+            changeState(currentState);
+        }
+        if (monsterBoss.life == 0) {
             destroyer.stageClear();
             monsterBoss.destroy();
             for (var i = 0; i < constants.MONSTER_BOSS_MISSILE_NUM; i++) {
@@ -86,7 +87,7 @@ var states;
         // Declare new Game Container
         game = new createjs.Container();
         // Instantiate Game Objects
-        space = new objects.Space(assets.getResult("space"), stage, game);
+        space = new objects.Space(assets.getResult("space3"), stage, game);
         destroyer = new objects.Destroyer(assets.getResult("destroyer"), stage, game, true);
         monsterBoss = new objects.MonsterBoss(assets.getResult("monsterBoss"), stage, game);
         // Show Cursor

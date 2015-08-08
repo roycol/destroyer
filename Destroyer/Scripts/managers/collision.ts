@@ -217,13 +217,11 @@ module managers {
             if (utility.distance(p1, p2) < ((destroyer.height * 0.3) + (monsterBoss.height * 0.3))) {
                 if (weapon.isColliding == false) {
                     createjs.Sound.play(weapon.sound);
-                    if (monsterBossLife == 0) {
+                    monsterBoss.life--;
+                    if (monsterBoss.life == 0) {
                         scoreboard.score += 500;
                         this.monsterBossExplosion(monsterBoss);
-                    } else {
-                        monsterBossLife--;
                     }
-
                     weapon.destroy();
                 }
                 weapon.isColliding = true;
@@ -241,9 +239,48 @@ module managers {
                 planets[planet].update();
                 this.planetCheck(planets[planet]);
             }
-             
 
             this.friendCheck(friend);
+        }
+
+        updateLvl2() {
+            //to check planet and friend collision
+            this.update();
+                        
+            //collisionCheck for monster's missile
+            for (var i = 0; i < constants.MONSTER_NUM; i++) {
+                for (var j = 0; j < constants.MONSTER_MISSILE_NUM; j++) {
+                    collision.missileCheck(missileArr[i][j]);
+                }
+            }
+                       
+            //collisionCheck for destroyer's weapon
+            for (var count = 0; count < destroyerWeaponNum; count++) {
+                if (!destroyerWeapons[count].isDestroyed) {
+                    collision.weaponCheck(destroyerWeapons[count]);
+                }
+            }
+        }
+
+        updateLvl3() {
+            //collisionCheck for monsterBoss' missile
+            for (var i = 0; i < constants.MONSTER_BOSS_MISSILE_NUM; i++) {                
+                collision.bossMissileCheck(bossMissileArr[i]);
+            }
+            //collisionCheck for monster's missile
+            for (var i = 0; i < constants.MONSTER_NUM; i++) {
+                for (var j = 0; j < constants.MONSTER_MISSILE_NUM; j++) {
+                    collision.missileCheck(missileArr[i][j]);
+                }
+            }
+            //collisionCheck for destroyer's weapon
+            for (var count = 0; count < destroyerWeaponNum; count++) {
+                if (!destroyerWeapons[count].isDestroyed) {
+                    collision.weaponCheck(destroyerWeapons[count]);
+                    collision.weaponCheckForBoss(destroyerWeapons[count]);
+                }
+            }
+
         }
 
     }
