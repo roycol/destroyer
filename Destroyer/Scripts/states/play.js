@@ -43,6 +43,7 @@ var states;
                 planets[count].destroy();
             }
             if (!destroyer.isStageClear) {
+                scoreboard.lives += constants.STAGE_CLEAR_LIVES; //add bonus lives
                 destroyer.destroy();
                 game.removeAllChildren();
                 game.removeAllEventListeners();

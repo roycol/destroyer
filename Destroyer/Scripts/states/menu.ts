@@ -48,7 +48,8 @@ module states {
         gameNameLabel = new objects.Label(constants.CANVAS_WIDTH / 2, 40, "DESTROYER", constants.LABEL_TITLE_FONT);
         game.addChild(gameNameLabel);
         // Display Game Instruction
-        var instruction = "You are the Destroyer!!!\n\nIn order to rescue your friends,\n\nyou are going to begin space traveling.\n\nYour friends are prisoned in small planets.\n\nYou can destroy it but can't big planets.\n\nSave your friends as much as you can\n\nand avoid big planets!!!";
+
+        var instruction = "You are the Destroyer!!!\n\nwho is sent out on a mission\n\nin a mysterious parallel Universe to save\n\nYour friends are prisoned in small planets.\n\nyour friends who are captured and kept\n\nin prison on small planets but only \n\nif you can survive the falling asteroids\n\nand enemy space crafts";
         gameInstructionLabel = new objects.Label(constants.CANVAS_WIDTH / 2, 180, instruction, constants.LABEL_CONTENT_FONT);
         game.addChild(gameInstructionLabel);
 

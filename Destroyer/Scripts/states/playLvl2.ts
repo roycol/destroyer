@@ -87,6 +87,7 @@ module states {
             }
 
             if (!destroyer.isStageClear) {
+                scoreboard.lives += constants.STAGE_CLEAR_LIVES; //add bonus lives
                 destroyer.destroy();
                 stage.removeChild(game);
                 game.removeAllChildren();

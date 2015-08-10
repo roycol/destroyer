@@ -41,7 +41,7 @@ module states {
         }
 
         if (scoreboard.score >= constants.LEVEL_1_CLEAR_SCORE) {
-            
+                        
             destroyer.stageClear();
                        
             friend.destroy();
@@ -50,6 +50,7 @@ module states {
             }
             
             if (!destroyer.isStageClear) {
+                scoreboard.lives += constants.STAGE_CLEAR_LIVES; //add bonus lives
                 destroyer.destroy(); 
                 game.removeAllChildren();
                 game.removeAllEventListeners();
