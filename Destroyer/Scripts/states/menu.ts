@@ -49,12 +49,12 @@ module states {
         game.addChild(gameNameLabel);
         // Display Game Instruction
 
-        var instruction = "You are the Destroyer!!!\n\nwho is sent out on a mission\n\nin a mysterious parallel Universe to save\n\nYour friends are prisoned in small planets.\n\nyour friends who are captured and kept\n\nin prison on small planets but only \n\nif you can survive the falling asteroids\n\nand enemy space crafts";
-        gameInstructionLabel = new objects.Label(constants.CANVAS_WIDTH / 2, 180, instruction, constants.LABEL_CONTENT_FONT);
+        var instruction = "You are the Destroyer!!!\nwho is sent out on a mission\nin a mysterious parallel Universe to save\nYour friends are prisoned in small planets.\nyour friends who are captured and kept\nin prison on small planets but only \nif you can survive the falling asteroids\nand enemy space crafts";
+        gameInstructionLabel = new objects.Label(constants.CANVAS_WIDTH / 2, 210, instruction, constants.LABEL_CONTENT_FONT);
         game.addChild(gameInstructionLabel);
 
         // Display Play Again Button
-        playButton = new objects.Button(constants.CANVAS_WIDTH / 2, 380, <string>assets.getResult("playNow"));
+        playButton = new objects.Button(constants.CANVAS_WIDTH / 2, 410, <string>assets.getResult("playNow"));
         game.addChild(playButton);
         playButton.addEventListener("click", playButtonClicked);
 
