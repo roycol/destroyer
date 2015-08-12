@@ -19,12 +19,12 @@ var states;
     function playStateLvl2() {
         space.update();
         friend.update();
-        for (var count = 0; count < constants.PLANET_NUM; count++) {
+        for (var count = 0; count < constants.LEVEL_2_PLANET_NUM; count++) {
             planets[count].update();
         }
         for (var i = 0; i < constants.MONSTER_NUM; i++) {
             monsters[i].update();
-            for (var j = 0; j < constants.MONSTER_MISSILE_NUM; j++) {
+            for (var j = 0; j < constants.LEVEL_2_MONSTER_MISSILE_NUM; j++) {
                 missileArr[i][j].update();
             }
         }
@@ -60,12 +60,12 @@ var states;
         if (scoreboard.score >= constants.LEVEL_2_CLEAR_SCORE) {
             destroyer.stageClear();
             friend.destroy();
-            for (var count = 0; count < constants.PLANET_NUM; count++) {
+            for (var count = 0; count < constants.LEVEL_2_PLANET_NUM; count++) {
                 planets[count].destroy();
             }
             for (var i = 0; i < constants.MONSTER_NUM; i++) {
                 monsters[i].destroy();
-                for (var j = 0; j < constants.MONSTER_MISSILE_NUM; j++) {
+                for (var j = 0; j < constants.LEVEL_2_MONSTER_MISSILE_NUM; j++) {
                     missileArr[i][j].destroy();
                 }
             }
@@ -92,14 +92,14 @@ var states;
         // Show Cursor
         stage.cursor = "none";
         // Create multiple planets
-        for (var count = 0; count < constants.PLANET_NUM; count++) {
+        for (var count = 0; count < constants.LEVEL_2_PLANET_NUM; count++) {
             planets[count] = new objects.Planet(count % 2 == 1 ? assets.getResult("planet") : assets.getResult("mercury"), stage, game);
         }
         // Create multiple monsters
         for (var i = 0; i < constants.MONSTER_NUM; i++) {
             monsters[i] = new objects.Monster(assets.getResult("monster"), stage, game);
             // monster missiles
-            for (var j = 0; j < constants.MONSTER_MISSILE_NUM; j++) {
+            for (var j = 0; j < constants.LEVEL_2_MONSTER_MISSILE_NUM; j++) {
                 missileArr[i][j] = new objects.MonsterMissile(assets.getResult("missile"), stage, game, monsters[i]);
             }
         }
@@ -112,4 +112,4 @@ var states;
     }
     states.playLvl2 = playLvl2;
 })(states || (states = {}));
-//# sourceMappingURL=playLvl2.js.map
+//# sourceMappingURL=playlvl2.js.map

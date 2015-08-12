@@ -3,6 +3,9 @@
     background-image: url('../assets/images/background.gif');
     background-repeat:no-repeat;
     background-size:cover;
+    text-shadow:5px 5px 5px rgb(255, 255, 255);
+    font-style:italic;
+    font-weight:bold;
     
 }
 
@@ -11,3 +14,10 @@ canvas {
     border-radius: 50px;
     margin:auto;
 }
+
+@font-face { 
+    font-family: 'BrushScriptStdMedium';
+    src: url('brushscriptstd.eot');
+    src: local('Brush Script Std'), local('BrushScriptStd'), url('brushscriptstd.woff') format('woff'), url('brushscriptstd.ttf') format('truetype');
+}
+

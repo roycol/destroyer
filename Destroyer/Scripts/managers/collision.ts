@@ -245,11 +245,16 @@ module managers {
 
         updateLvl2() {
             //to check planet and friend collision
-            this.update();
+            for (var planet = 0; planet < constants.LEVEL_2_PLANET_NUM; planet++) {
+                planets[planet].update();
+                this.planetCheck(planets[planet]);
+            }
+
+            this.friendCheck(friend);
                         
             //collisionCheck for monster's missile
             for (var i = 0; i < constants.MONSTER_NUM; i++) {
-                for (var j = 0; j < constants.MONSTER_MISSILE_NUM; j++) {
+                for (var j = 0; j < constants.LEVEL_2_MONSTER_MISSILE_NUM; j++) {
                     collision.missileCheck(missileArr[i][j]);
                 }
             }

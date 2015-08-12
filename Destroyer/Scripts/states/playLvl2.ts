@@ -22,14 +22,14 @@ module states {
         friend.update();
         
 
-        for (var count = 0; count < constants.PLANET_NUM; count++) {
+        for (var count = 0; count < constants.LEVEL_2_PLANET_NUM; count++) {
             planets[count].update();
         }
 
         for (var i = 0; i < constants.MONSTER_NUM; i++) {
             monsters[i].update();
 
-            for (var j = 0; j < constants.MONSTER_MISSILE_NUM; j++) {
+            for (var j = 0; j < constants.LEVEL_2_MONSTER_MISSILE_NUM; j++) {
                 missileArr[i][j].update();
             }
         }
@@ -74,14 +74,14 @@ module states {
             destroyer.stageClear();
 
             friend.destroy();
-            for (var count = 0; count < constants.PLANET_NUM; count++) {
+            for (var count = 0; count < constants.LEVEL_2_PLANET_NUM; count++) {
                 planets[count].destroy();
             }
 
             for (var i = 0; i < constants.MONSTER_NUM; i++) {
                 monsters[i].destroy();
 
-                for (var j = 0; j < constants.MONSTER_MISSILE_NUM; j++) {
+                for (var j = 0; j < constants.LEVEL_2_MONSTER_MISSILE_NUM; j++) {
                     missileArr[i][j].destroy();
                 }
             }
@@ -113,7 +113,7 @@ module states {
         stage.cursor = "none";
 
         // Create multiple planets
-        for (var count = 0; count < constants.PLANET_NUM; count++) {
+        for (var count = 0; count < constants.LEVEL_2_PLANET_NUM; count++) {
             planets[count] = new objects.Planet(count % 2 == 1 ? <string>assets.getResult("planet") : <string>assets.getResult("mercury"), stage, game);
         }
         
@@ -122,7 +122,7 @@ module states {
             monsters[i] = new objects.Monster(<string>assets.getResult("monster"), stage, game);
 
             // monster missiles
-            for (var j = 0; j < constants.MONSTER_MISSILE_NUM; j++) {
+            for (var j = 0; j < constants.LEVEL_2_MONSTER_MISSILE_NUM; j++) {
                 missileArr[i][j] = new objects.MonsterMissile(<string>assets.getResult("missile"), stage, game, monsters[i]);
             }
         }
