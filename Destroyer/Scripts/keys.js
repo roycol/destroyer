@@ -1,3 +1,11 @@
+/*
+    * file name: game.ts
+    * author's name: Roy Kim
+    * last modified by: Sameer Sharma
+    * date last modified: July 10, 2015
+    * description: main typescript file for destroyer
+    * revision history: _v5
+*/
 var keys;
 (function (keys) {
     // Keyboard values

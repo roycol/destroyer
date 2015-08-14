@@ -1,7 +1,7 @@
 /*
     * file name: constants.ts
     * author's name: Roy Kim
-    * last modified by: Roy Kim
+    * last modified by: Sameer Sharma
     * date last modified: July 10, 2015
     * description: Constants for each part of game
     * revision history: _v2

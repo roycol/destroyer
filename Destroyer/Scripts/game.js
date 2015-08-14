@@ -1,6 +1,6 @@
 /*
     * file name: game.ts
-    * author's name: Roy Kim
+    * author's name: Sameer Sharma
     * last modified by: Roy Kim
     * date last modified: July 10, 2015
     * description: main typescript file for destroyer
@@ -145,7 +145,6 @@ function gameLoop() {
     stage.update();
 }
 function changeState(state) {
-    // Launch Various "screens"
     switch (state) {
         case constants.MENU_STATE:
             // instantiate menu screen
